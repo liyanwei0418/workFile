@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_NotifyExtensionMapper" >
+
+    <!--查询未读公告数目-->
+    <select id="selectRemindNotifyCount" parameterType="String" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM oa_notify_record WHERE user_id = #{userRefId}  AND read_flag=0
+    </select>
+<!--record notify表中2个字段组合主键，notify_id和user_id 。所以在关联查询添加2个条件：o.`id`=r.`notify_id` AND r.`user_id`=#{userId}-->
+    <select id="selectNotifyView" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT r.`notify_id` AS notifyId,
+        r.`read_flag` AS readFlag,
+        r.`read_date` AS readDate,
+        o.`type`,
+        o.`title`,
+        o.`content`,
+        o.`files`,
+        o.`status`,
+        o.`remarks`,
+        o.`del_flag`,
+        o.`column_id`,
+        o.`create_date` AS createDate,
+        o.`create_by` AS createBy,
+        o.`update_by` AS updateBy,
+        o.`update_date` AS updateDate,
+        o.`publish_time` AS publishTime,
+        u.`name`,
+        u.`username`,
+        c.name AS columName,
+        c.`id`
+        FROM oa_notify_record r, oa_notify o,oa_notify_column c,sys_user u
+        WHERE o.`id`=r.`notify_id` AND r.`user_id`=#{userId} AND o.id IN (SELECT notify_id FROM oa_notify_record WHERE user_id=#{userId})
+        AND o.`del_flag`=0 AND o.`column_id`=c.`id` AND o.`create_by`=u.`id` AND o.`school_id`=#{schoolId}
+        <if test="isPublish != null and isPublish != ''">
+            AND o.`publish_time`  &lt; #{isPublish}
+        </if>
+        <if test="beginDate != null and beginDate != '' and beginDate!=0 and endDate!=0">
+            AND o.`publish_time` BETWEEN #{beginDate} AND #{endDate}
+        </if>
+        <if test="title != null and title != ''">
+            AND o.`title` LIKE #{title}
+        </if>
+        <if test="columId != null and columId != ''">
+            AND o.`column_id`=#{columId}
+        </if>
+        ORDER BY o.`create_date` DESC
+    </select>
+
+
+    <!--根据公告id查询这条公告通知了哪些部门 SELECT DISTINCT d.`name` AS departName,t.`department_id` AS departId FROM org_department d,user_teacher t WHERE t.`id`
+          IN( SELECT DISTINCT r.`user_id` FROM oa_notify_record r WHERE r.`notify_id`=#{notifyId}) AND d.`id`=t.`department_id` AND d.`school_id`=t.`school_id`-->
+    <select id="selectNotifyRecord" resultType="java.util.Map" parameterType="String">
+        SELECT DISTINCT
+          t.`name` AS departName,
+          t.`school_id`,
+          r.`user_id` AS departId,
+          r.`notify_id`
+        FROM
+          oa_notify_record r,
+          user_teacher t
+        WHERE notify_id = #{notifyId}
+          AND t.`id` = r.`user_id`
+    </select>
+
+
+
+    <insert id="insertNotifyBackId"  parameterType="cn.gukeer.platform.persistence.entity.Notify" useGeneratedKeys="true" >
+        <selectKey  resultType="java.lang.String" order="AFTER"  keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into oa_notify (id, type, title,
+        files, status, column_id,
+        remarks, del_flag, create_by,
+        create_date, update_by, update_date,
+        publish_time, content,school_id)
+        values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+        #{files,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{columnId,jdbcType=INTEGER},
+        #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER},
+        #{createDate,jdbcType=BIGINT}, #{updateBy,jdbcType=INTEGER}, #{updateDate,jdbcType=BIGINT},
+        #{publishTime,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR},#{schoolId,jdbcType=INTEGER})
+    </insert>
+</mapper>

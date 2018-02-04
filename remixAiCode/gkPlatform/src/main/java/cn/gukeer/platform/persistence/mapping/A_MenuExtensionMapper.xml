@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_MenuExtensionMapper" >
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.modelView.MenuView"
+               extends="cn.gukeer.platform.persistence.dao.MenuMapper.BaseResultMap" >
+        <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectMenusByRoleId" resultMap="ExtensionBaseResultMap" parameterType="String" >
+        select
+        <include refid="cn.gukeer.platform.persistence.dao.MenuMapper.Base_Column_List" />, role_id
+        from ref_role_menu ref, sys_menu menu
+        WHERE ref.role_id=#{roleId} AND ref.menu_id = menu.id
+    </select>
+
+</mapper>

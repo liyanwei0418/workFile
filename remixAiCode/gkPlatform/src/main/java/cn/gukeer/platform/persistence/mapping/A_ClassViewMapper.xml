@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_ClassViewMapper">
+
+    <resultMap id="BaseResult" type="cn.gukeer.platform.modelView.ClassView">
+        <result column="cname" property="className" jdbcType="VARCHAR"/>
+        <result column="csname" property="xdName" jdbcType="VARCHAR"/>
+        <result column="id" property="classId" jdbcType="VARCHAR"/>
+        <result column="csname" property="xdName" jdbcType="VARCHAR"/>
+        <result column="nj" property="nj" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询所有班主任的方法-->
+
+    <select id="findClassNameByXdAndClassId" resultMap="BaseResult" >
+        SELECT c.id,c.nj,c.name as cname ,cs.name as csname
+        FROM org_grade_class c
+        LEFT JOIN org_class_section cs ON c.xd = cs.id
+        WHERE c.id=#{classId} AND cs.id=#{xd}
+    </select>
+
+
+</mapper>

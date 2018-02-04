@@ -1,0 +1,82 @@
+        *{
+             box-sizing: border-box;
+        }
+        span.error {
+            color: #C00;
+            padding: 0 6px;
+            display: inline
+        }
+
+        body {
+            height: auto !important;
+            font-size: 0.75em;
+            color: #666;
+            font-family: "Roboto", "Noto Sans CJK SC", "Nato Sans CJK TC", "Nato Sans CJK JP", "Nato Sans CJK KR", -apple-system, ".SFNSText-Regular", "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Zen Hei", Arial, sans-serif;
+        }
+
+        .container {
+            /*width: 600px;*/
+            padding: 5px 8px;
+            padding-top: 30px !important;
+            margin: 0 auto;
+            /*overflow: hidden;*/
+            /*border: 1px solid #333;*/
+        }
+
+        input {
+            margin: 0;
+            padding: 0;
+            border: 1px solid #ddd;
+            height: 28px !important;
+            padding: 0 3px;
+            border-radius: 2px;
+            width: 190px;
+           
+        }
+
+        .container ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+
+        .container form > ul > li {
+            margin: 15px 0;
+        }
+
+        .fSpan {
+            display: inline-block;
+            width: 27%;
+            text-align: right;
+        }
+
+        .container ul li span b {
+            color: #f00;
+            margin-right: 8px;
+        }
+
+        select {
+            width: 190px;
+            height: 28px;
+            border: 1px solid #ddd;
+        }
+
+        .img-list-icon {
+            background: url(${ctxStaticNew}/images/default_tou.png) no-repeat 10px 12px !important;
+        }
+
+        .laydate-icon {
+            border: 1px solid #ddd !important;
+        }
+
+        input, select {
+            outline: none;
+        }
+
+        input[type="checkbox"] {
+            -webkit-appearance: checkbox;
+            width: auto;
+            height: auto;
+        }
+        

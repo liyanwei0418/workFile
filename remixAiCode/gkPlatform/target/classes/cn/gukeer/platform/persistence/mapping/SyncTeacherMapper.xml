@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.SyncTeacherMapper" >
+  <resultMap id="BaseResultMap" type="cn.gukeer.platform.persistence.entity.SyncTeacher" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sync_id" property="syncId" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="department_id" property="departmentId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="is_manage" property="isManage" jdbcType="INTEGER" />
+    <result column="title_id" property="titleId" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="start_work" property="startWork" jdbcType="BIGINT" />
+    <result column="head_url" property="headUrl" jdbcType="VARCHAR" />
+    <result column="high_time" property="highTime" jdbcType="BIGINT" />
+    <result column="zc" property="zc" jdbcType="VARCHAR" />
+    <result column="sfzrjs" property="sfzrjs" jdbcType="VARCHAR" />
+    <result column="jg" property="jg" jdbcType="VARCHAR" />
+    <result column="zzmm" property="zzmm" jdbcType="VARCHAR" />
+    <result column="rjxk" property="rjxk" jdbcType="VARCHAR" />
+    <result column="xq" property="xq" jdbcType="VARCHAR" />
+    <result column="zgxl" property="zgxl" jdbcType="VARCHAR" />
+    <result column="lwxsj" property="lwxsj" jdbcType="BIGINT" />
+    <result column="sfhq" property="sfhq" jdbcType="VARCHAR" />
+    <result column="sfbzr" property="sfbzr" jdbcType="VARCHAR" />
+    <result column="wyyz" property="wyyz" jdbcType="VARCHAR" />
+    <result column="zyjsgwfl" property="zyjsgwfl" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="event" property="event" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="sync_date" property="syncDate" jdbcType="TIMESTAMP" />
+    <result column="sync_del_flag" property="syncDelFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sync_id, school_id, department_id, name, gender, identity, account, is_manage, 
+    title_id, no, phone, mobile, email, start_work, head_url, high_time, zc, sfzrjs, 
+    jg, zzmm, rjxk, xq, zgxl, lwxsj, sfhq, sfbzr, wyyz, zyjsgwfl, del_flag, event, source, 
+    sync_date, sync_del_flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gukeer.platform.persistence.entity.SyncTeacherExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sync_teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sync_teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sync_teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gukeer.platform.persistence.entity.SyncTeacherExample" >
+    delete from sync_teacher
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gukeer.platform.persistence.entity.SyncTeacher" >
+    insert into sync_teacher (id, sync_id, school_id, 
+      department_id, name, gender, 
+      identity, account, is_manage, 
+      title_id, no, phone, 
+      mobile, email, start_work, 
+      head_url, high_time, zc, 
+      sfzrjs, jg, zzmm, rjxk, 
+      xq, zgxl, lwxsj, sfhq, 
+      sfbzr, wyyz, zyjsgwfl, 
+      del_flag, event, source, 
+      sync_date, sync_del_flag)
+    values (#{id,jdbcType=INTEGER}, #{syncId,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, 
+      #{departmentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{identity,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{isManage,jdbcType=INTEGER}, 
+      #{titleId,jdbcType=VARCHAR}, #{no,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{startWork,jdbcType=BIGINT}, 
+      #{headUrl,jdbcType=VARCHAR}, #{highTime,jdbcType=BIGINT}, #{zc,jdbcType=VARCHAR}, 
+      #{sfzrjs,jdbcType=VARCHAR}, #{jg,jdbcType=VARCHAR}, #{zzmm,jdbcType=VARCHAR}, #{rjxk,jdbcType=VARCHAR}, 
+      #{xq,jdbcType=VARCHAR}, #{zgxl,jdbcType=VARCHAR}, #{lwxsj,jdbcType=BIGINT}, #{sfhq,jdbcType=VARCHAR}, 
+      #{sfbzr,jdbcType=VARCHAR}, #{wyyz,jdbcType=VARCHAR}, #{zyjsgwfl,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=INTEGER}, #{event,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{syncDate,jdbcType=TIMESTAMP}, #{syncDelFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gukeer.platform.persistence.entity.SyncTeacher" >
+    insert into sync_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="syncId != null" >
+        sync_id,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+      <if test="departmentId != null" >
+        department_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="isManage != null" >
+        is_manage,
+      </if>
+      <if test="titleId != null" >
+        title_id,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="startWork != null" >
+        start_work,
+      </if>
+      <if test="headUrl != null" >
+        head_url,
+      </if>
+      <if test="highTime != null" >
+        high_time,
+      </if>
+      <if test="zc != null" >
+        zc,
+      </if>
+      <if test="sfzrjs != null" >
+        sfzrjs,
+      </if>
+      <if test="jg != null" >
+        jg,
+      </if>
+      <if test="zzmm != null" >
+        zzmm,
+      </if>
+      <if test="rjxk != null" >
+        rjxk,
+      </if>
+      <if test="xq != null" >
+        xq,
+      </if>
+      <if test="zgxl != null" >
+        zgxl,
+      </if>
+      <if test="lwxsj != null" >
+        lwxsj,
+      </if>
+      <if test="sfhq != null" >
+        sfhq,
+      </if>
+      <if test="sfbzr != null" >
+        sfbzr,
+      </if>
+      <if test="wyyz != null" >
+        wyyz,
+      </if>
+      <if test="zyjsgwfl != null" >
+        zyjsgwfl,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="event != null" >
+        event,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="syncDate != null" >
+        sync_date,
+      </if>
+      <if test="syncDelFlag != null" >
+        sync_del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="syncId != null" >
+        #{syncId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="isManage != null" >
+        #{isManage,jdbcType=INTEGER},
+      </if>
+      <if test="titleId != null" >
+        #{titleId,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startWork != null" >
+        #{startWork,jdbcType=BIGINT},
+      </if>
+      <if test="headUrl != null" >
+        #{headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="highTime != null" >
+        #{highTime,jdbcType=BIGINT},
+      </if>
+      <if test="zc != null" >
+        #{zc,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzrjs != null" >
+        #{sfzrjs,jdbcType=VARCHAR},
+      </if>
+      <if test="jg != null" >
+        #{jg,jdbcType=VARCHAR},
+      </if>
+      <if test="zzmm != null" >
+        #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="rjxk != null" >
+        #{rjxk,jdbcType=VARCHAR},
+      </if>
+      <if test="xq != null" >
+        #{xq,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxl != null" >
+        #{zgxl,jdbcType=VARCHAR},
+      </if>
+      <if test="lwxsj != null" >
+        #{lwxsj,jdbcType=BIGINT},
+      </if>
+      <if test="sfhq != null" >
+        #{sfhq,jdbcType=VARCHAR},
+      </if>
+      <if test="sfbzr != null" >
+        #{sfbzr,jdbcType=VARCHAR},
+      </if>
+      <if test="wyyz != null" >
+        #{wyyz,jdbcType=VARCHAR},
+      </if>
+      <if test="zyjsgwfl != null" >
+        #{zyjsgwfl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="event != null" >
+        #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="syncDate != null" >
+        #{syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncDelFlag != null" >
+        #{syncDelFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sync_teacher
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.syncId != null" >
+        sync_id = #{record.syncId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolId != null" >
+        school_id = #{record.schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departmentId != null" >
+        department_id = #{record.departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.identity != null" >
+        identity = #{record.identity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null" >
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isManage != null" >
+        is_manage = #{record.isManage,jdbcType=INTEGER},
+      </if>
+      <if test="record.titleId != null" >
+        title_id = #{record.titleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.no != null" >
+        no = #{record.no,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startWork != null" >
+        start_work = #{record.startWork,jdbcType=BIGINT},
+      </if>
+      <if test="record.headUrl != null" >
+        head_url = #{record.headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.highTime != null" >
+        high_time = #{record.highTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.zc != null" >
+        zc = #{record.zc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfzrjs != null" >
+        sfzrjs = #{record.sfzrjs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jg != null" >
+        jg = #{record.jg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zzmm != null" >
+        zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rjxk != null" >
+        rjxk = #{record.rjxk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xq != null" >
+        xq = #{record.xq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zgxl != null" >
+        zgxl = #{record.zgxl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lwxsj != null" >
+        lwxsj = #{record.lwxsj,jdbcType=BIGINT},
+      </if>
+      <if test="record.sfhq != null" >
+        sfhq = #{record.sfhq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfbzr != null" >
+        sfbzr = #{record.sfbzr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wyyz != null" >
+        wyyz = #{record.wyyz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zyjsgwfl != null" >
+        zyjsgwfl = #{record.zyjsgwfl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.event != null" >
+        event = #{record.event,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.syncDate != null" >
+        sync_date = #{record.syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.syncDelFlag != null" >
+        sync_del_flag = #{record.syncDelFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sync_teacher
+    set id = #{record.id,jdbcType=INTEGER},
+      sync_id = #{record.syncId,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      department_id = #{record.departmentId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=INTEGER},
+      identity = #{record.identity,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR},
+      is_manage = #{record.isManage,jdbcType=INTEGER},
+      title_id = #{record.titleId,jdbcType=VARCHAR},
+      no = #{record.no,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      start_work = #{record.startWork,jdbcType=BIGINT},
+      head_url = #{record.headUrl,jdbcType=VARCHAR},
+      high_time = #{record.highTime,jdbcType=BIGINT},
+      zc = #{record.zc,jdbcType=VARCHAR},
+      sfzrjs = #{record.sfzrjs,jdbcType=VARCHAR},
+      jg = #{record.jg,jdbcType=VARCHAR},
+      zzmm = #{record.zzmm,jdbcType=VARCHAR},
+      rjxk = #{record.rjxk,jdbcType=VARCHAR},
+      xq = #{record.xq,jdbcType=VARCHAR},
+      zgxl = #{record.zgxl,jdbcType=VARCHAR},
+      lwxsj = #{record.lwxsj,jdbcType=BIGINT},
+      sfhq = #{record.sfhq,jdbcType=VARCHAR},
+      sfbzr = #{record.sfbzr,jdbcType=VARCHAR},
+      wyyz = #{record.wyyz,jdbcType=VARCHAR},
+      zyjsgwfl = #{record.zyjsgwfl,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=INTEGER},
+      event = #{record.event,jdbcType=VARCHAR},
+      source = #{record.source,jdbcType=VARCHAR},
+      sync_date = #{record.syncDate,jdbcType=TIMESTAMP},
+      sync_del_flag = #{record.syncDelFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gukeer.platform.persistence.entity.SyncTeacher" >
+    update sync_teacher
+    <set >
+      <if test="syncId != null" >
+        sync_id = #{syncId,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentId != null" >
+        department_id = #{departmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="isManage != null" >
+        is_manage = #{isManage,jdbcType=INTEGER},
+      </if>
+      <if test="titleId != null" >
+        title_id = #{titleId,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startWork != null" >
+        start_work = #{startWork,jdbcType=BIGINT},
+      </if>
+      <if test="headUrl != null" >
+        head_url = #{headUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="highTime != null" >
+        high_time = #{highTime,jdbcType=BIGINT},
+      </if>
+      <if test="zc != null" >
+        zc = #{zc,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzrjs != null" >
+        sfzrjs = #{sfzrjs,jdbcType=VARCHAR},
+      </if>
+      <if test="jg != null" >
+        jg = #{jg,jdbcType=VARCHAR},
+      </if>
+      <if test="zzmm != null" >
+        zzmm = #{zzmm,jdbcType=VARCHAR},
+      </if>
+      <if test="rjxk != null" >
+        rjxk = #{rjxk,jdbcType=VARCHAR},
+      </if>
+      <if test="xq != null" >
+        xq = #{xq,jdbcType=VARCHAR},
+      </if>
+      <if test="zgxl != null" >
+        zgxl = #{zgxl,jdbcType=VARCHAR},
+      </if>
+      <if test="lwxsj != null" >
+        lwxsj = #{lwxsj,jdbcType=BIGINT},
+      </if>
+      <if test="sfhq != null" >
+        sfhq = #{sfhq,jdbcType=VARCHAR},
+      </if>
+      <if test="sfbzr != null" >
+        sfbzr = #{sfbzr,jdbcType=VARCHAR},
+      </if>
+      <if test="wyyz != null" >
+        wyyz = #{wyyz,jdbcType=VARCHAR},
+      </if>
+      <if test="zyjsgwfl != null" >
+        zyjsgwfl = #{zyjsgwfl,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="event != null" >
+        event = #{event,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="syncDate != null" >
+        sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="syncDelFlag != null" >
+        sync_del_flag = #{syncDelFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gukeer.platform.persistence.entity.SyncTeacher" >
+    update sync_teacher
+    set sync_id = #{syncId,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=VARCHAR},
+      department_id = #{departmentId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      identity = #{identity,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      is_manage = #{isManage,jdbcType=INTEGER},
+      title_id = #{titleId,jdbcType=VARCHAR},
+      no = #{no,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      start_work = #{startWork,jdbcType=BIGINT},
+      head_url = #{headUrl,jdbcType=VARCHAR},
+      high_time = #{highTime,jdbcType=BIGINT},
+      zc = #{zc,jdbcType=VARCHAR},
+      sfzrjs = #{sfzrjs,jdbcType=VARCHAR},
+      jg = #{jg,jdbcType=VARCHAR},
+      zzmm = #{zzmm,jdbcType=VARCHAR},
+      rjxk = #{rjxk,jdbcType=VARCHAR},
+      xq = #{xq,jdbcType=VARCHAR},
+      zgxl = #{zgxl,jdbcType=VARCHAR},
+      lwxsj = #{lwxsj,jdbcType=BIGINT},
+      sfhq = #{sfhq,jdbcType=VARCHAR},
+      sfbzr = #{sfbzr,jdbcType=VARCHAR},
+      wyyz = #{wyyz,jdbcType=VARCHAR},
+      zyjsgwfl = #{zyjsgwfl,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      event = #{event,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      sync_date = #{syncDate,jdbcType=TIMESTAMP},
+      sync_del_flag = #{syncDelFlag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_GradeClassExtensionMapper">
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.modelView.GradeClassView"
+               extends="cn.gukeer.platform.persistence.dao.GradeClassMapper.BaseResultMap">
+        <result column="school_name" property="schoolName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Extension_Base_Column_List">
+        cls.id as id,
+        cls.school_id as school_id,
+        cls.name as name,
+        cls.short_name as short_name,
+        cls.xd as xd,
+        cls.nj as nj,
+        cls.bh as bh,
+        cls.bjlx as bjlx,
+        cls.master_id as master_id,
+        cls.master_name as master_name,
+        cls.del_flag as del_flag,
+        cls.remarks as remarks,
+        cls.create_by as create_by,
+        cls.create_date as create_date,
+        cls.update_by as update_by,
+        cls.update_date as update_date
+    </sql>
+
+    <update id="changeDelFlag" parameterType="String">
+        UPDATE org_grade_class
+        SET del_flag = 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <insert id="batchInsertGradeClass">
+        INSERT INTO `org_grade_class`
+        (`id`,
+        `school_id`,
+        `name`,
+        `short_name`,
+        `xd`,
+        `nj`,
+        `bh`,
+        `bjlx`,
+        `xq`,
+        `rxnd`,
+        `master_id`,
+        `master_name`,
+        `del_flag`,
+        `remarks`,
+        `create_by`,
+        `create_date`,
+        `update_by`,
+        `update_date`)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},#{item.schoolId},#{item.name},#{item.shortName},#{item.xd},#{item.nj},
+            #{item.bh},#{item.bjlx},#{item.xq},#{item.rxnd},#{item.masterId},#{item.masterName},
+            #{item.delFlag},#{item.remarks},#{item.createBy},#{item.createDate},#{item.updateBy},
+            #{item.updateDate}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

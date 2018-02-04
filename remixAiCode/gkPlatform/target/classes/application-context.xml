@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!-- import config file -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:db.properties</value>
+                <value>classpath*:syncData.properties</value>
+                <value>classpath*:redis.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- 使用ehcache缓存 -->
+    <!--<bean id="nettyClient" class="cn.gukeer.sync.netty.ObjectClient"/>-->
+    <cache:annotation-driven cache-manager="ehcacheManager"/>
+    <!-- cacheManager工厂类，   指定ehcache.xml的位置 -->
+    <bean id="ehcacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:system-ehcache.xml"/>
+    </bean>
+    <!-- 声明cacheManager -->
+    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcacheManagerFactory"/>
+    </bean>
+
+    <bean id="lessEngine" class="com.asual.lesscss.LessEngine" />
+
+    <import resource="application-shiro.xml"/>
+    <import resource="application-jms.xml"/>
+    <import resource="application-redis.xml"/>
+
+    <!--<bean id="CheckPathFilter" class="cn.gukeer.common.shiro.filter.CheckPathFilter"></bean>  -->
+
+   <!-- 定时配置文件加载-->
+     <!--<import resource="classpath:syncScon-quartz.xml"/>-->
+
+    <bean class="cn.gukeer.common.utils.SpringContextHolder" lazy-init="false" />
+
+</beans>

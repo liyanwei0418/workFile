@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>JSTL 1.1 functions library</description>
+    <display-name>JSTL functions sys</display-name>
+    <tlib-version>1.1</tlib-version>
+    <short-name>gukeer</short-name>
+    <uri>http://java.sun.com/jsp/jstl/functionss</uri>
+
+    <function>
+        <description>判断roleMenuList是否包含roleId</description>
+        <name>roleMenuContains</name>
+        <function-class>cn.gukeer.common.tld.RoleMenuUtil</function-class>
+        <function-signature>java.lang.Boolean roleMenuContains(java.lang.String, java.lang.String, java.util.List)</function-signature>
+        <example>${gukeer:roleMenuContains(String, String, List)}</example>
+    </function>
+
+    <function>
+        <description>判断和当前时间的间距</description>
+        <name>intervalNowTimeToView</name>
+        <function-class>cn.gukeer.common.tld.DateTimeUtil</function-class>
+        <function-signature>java.lang.String formatDateInterval(long)</function-signature>
+        <example>${gukeer:intervalNowTimeToView(long)}</example>
+    </function>
+
+    <function>
+        <description>将毫秒转换成日期</description>
+        <name>millsToyyyyMMdd</name>
+        <function-class>cn.gukeer.common.utils.DateUtils</function-class>
+        <function-signature>java.lang.String millsToyyyyMMdd(java.lang.Long)</function-signature>
+        <example>${gukeer:millsToyyyyMMdd(long)}</example>
+    </function>
+
+    <function>
+        <description>将毫秒转换月份日期时间</description>
+        <name>millsToMMddHHmm</name>
+        <function-class>cn.gukeer.common.utils.DateUtils</function-class>
+        <function-signature>java.lang.String millsToMMddHHmm(java.lang.Long)</function-signature>
+        <example>${gukeer:millsToMMddHHmm(long)}</example>
+    </function>
+
+    <function>
+        <description>将毫秒转换成具体时间</description>
+        <name>millsToyyyyMMddHHmmss</name>
+        <function-class>cn.gukeer.common.utils.DateUtils</function-class>
+        <function-signature>java.lang.String millsToyyyyMMddHHmmss(java.lang.Long)</function-signature>
+        <example>${gukeer:millsToyyyyMMdd(long)}</example>
+    </function>
+
+    <function>
+        <description>将毫秒转换成具体时间</description>
+        <name>parseStandardDate</name>
+        <function-class>cn.gukeer.common.utils.DateUtils</function-class>
+        <function-signature>java.util.Date fromTimestamp(long)</function-signature>
+        <example>${gukeer:millsToyyyyMMdd(long)}</example>
+    </function>
+
+    <function>
+        <description>判断当前日期和数据日期差</description>
+        <name>outOfDate</name>
+        <function-class>cn.gukeer.common.utils.DateUtils</function-class>
+        <function-signature>boolean outOfDate(java.lang.Long)</function-signature>
+        <example>${gukeer:outOfDate(long)}</example>
+    </function>
+
+    <function>
+        <description>空字符判断</description>
+        <name>emptyString</name>
+        <function-class>cn.gukeer.common.tld.GukeerStringUtil</function-class>
+        <function-signature>java.lang.Boolean isEmpty(java.lang.String)</function-signature>
+        <example>${gukeer:isEmpty(java.lang.String)}</example>
+    </function>
+
+    <function>
+        <description>非空字符判断</description>
+        <name>notEmptyString</name>
+        <function-class>cn.gukeer.common.tld.GukeerStringUtil</function-class>
+        <function-signature>java.lang.Boolean notEmpty(java.lang.String)</function-signature>
+        <example>${gukeer:notEmpty(java.lang.String)}</example>
+    </function>
+
+    <function>
+        <description>若0则不显示</description>
+        <name>intToString</name>
+        <function-class>cn.gukeer.common.tld.GukeerStringUtil</function-class>
+        <function-signature>java.lang.String intToString(java.lang.String))</function-signature>
+        <example>${gukeer:intToString(java.lang.Integer)}</example>
+    </function>
+
+    <function>
+        <description>判断list是否包含字符串</description>
+        <name>listContainsString</name>
+        <function-class>cn.gukeer.common.tld.GukeerStringUtil</function-class>
+        <function-signature>java.lang.Boolean listContainsString(java.util.List,java.lang.String)</function-signature>
+        <example>${gukeer:listContainsString(java.util.List,java.lang.String)}</example>
+    </function>
+
+    <function>
+        <description>查询天气状况</description>
+        <name>getWeather</name>
+        <function-class>cn.gukeer.common.utils.WeatherUtil</function-class>
+        <function-signature>java.util.Map getWeather(java.lang.String,java.lang.Integer)</function-signature>
+        <example>${gukeer:getWeather(java.lang.String,java.lang.Integer)}</example>
+    </function>
+
+    <function>
+        <description>查询当前星期几日期</description>
+        <name>getYmdw</name>
+        <function-class>cn.gukeer.common.utils.DateUtils</function-class>
+        <function-signature>java.lang.String getYmdw(java.lang.Integer)</function-signature>
+        <example>${gukeer:getYmdw(java.lang.Integer)}</example>
+    </function>
+
+    <function>
+        <description>判断字符串string是否包含字符串subString</description>
+        <name>isContainsString</name>
+        <function-class>cn.gukeer.common.tld.GukeerStringUtil</function-class>
+        <function-signature>java.lang.Boolean isContainsString(java.lang.String,java.lang.String)</function-signature>
+        <example>${gukeer:listContainsString(java.lang.String,java.lang.String)}</example>
+    </function>
+
+    <function>
+        <description>显示文件名</description>
+        <name>showFileName</name>
+        <function-class>cn.gukeer.common.utils.FileUtils</function-class>
+        <function-signature>java.lang.String showFileName(java.lang.String)</function-signature>
+        <example>${gukeer:showFileName(java.lang.String)}</example>
+    </function>
+
+    <function>
+        <description>除法</description>
+        <name>division</name>
+        <function-class>cn.gukeer.common.utils.NumberConvertUtil</function-class>
+        <function-signature>java.lang.Double division(java.lang.Object,java.lang.Object,int).String,int)</function-signature>
+        <example>${gukeer:division(java.lang.Object,java.lang.Object,int)}</example>
+    </function>
+</taglib>

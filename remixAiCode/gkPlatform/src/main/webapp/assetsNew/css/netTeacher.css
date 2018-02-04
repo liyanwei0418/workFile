@@ -1,0 +1,209 @@
+ul{
+    margin-bottom: 0;
+}
+.little-table .active{
+    background: #e8effc;
+}
+.main .container{
+    margin-bottom: 0;
+}
+.table-left{
+    background: #fcfcfc;
+    padding-top: 20px;
+}
+
+.table-left ul li>p{
+    padding-left: 12px;
+    color: #666;
+}
+.all-space{
+    background: #ececec;
+    width: 120px;
+    height: 8px;
+    border-radius: 8px;
+}
+.all-space>i{
+    display: inline-block;
+    /*width: 40%;*/
+    height: 100%;
+    background: #458efb;
+    border-radius: 8px 0 0 8px;
+}
+i{
+    font-style: normal;
+}
+.my-file-icon, .my-file-share{
+    cursor: pointer;
+    width: 100%;
+    padding-left: 55px;
+    line-height: 55px;
+    position: relative;
+}
+.my-file-icon:before ,.my-file-share:before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url(../images/net_disk_files.png) no-repeat left 3px;
+    position: absolute;
+    top: 10px;
+    left: 12px;
+}
+.my-file-share:before{
+    background: url(../images/net_share.png) no-repeat left 3px;
+}
+.my-file-share{
+    border-top: 1px solid #ececec;
+}
+.my-file-icon:after, .my-file-share:after{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url(../images/down.jpg) no-repeat center 16px;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+}
+.my-file-iconn:after{
+    transform: rotate(90deg);
+}
+.my-file-iconnn:after{
+    transform: rotate(-90deg);
+}
+
+.little-table p{
+    cursor: pointer;
+    padding-left: 55px;
+    line-height: 45px;
+    position: relative;
+}
+
+.little-table p:before{
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 24px;
+}
+.all:before{
+    background: url(../images/net_all.png) no-repeat left 3px;
+}
+.documents:before{
+    background: url(../images/net_doc.png) no-repeat left 3px;
+}
+.images:before{
+    background: url(../images/net_img.png) no-repeat left 3px;
+}
+.audios:before{
+    background: url(../images/net_aud.png) no-repeat left 3px;
+}
+.videos:before{
+    background: url(../images/net_vid.png) no-repeat left 3px;
+}
+.others:before{
+    background: url(../images/net_oth.png) no-repeat left 3px;
+}
+.shares:before{
+    background: url(../images/net_share.png) no-repeat left 3px;
+}
+
+main.col-xs-9 > div.search-box > button{
+    height: 30px;
+    border: 1px solid #54AB37;
+    background: #54AB37;
+    color: #fff;
+    border-radius: 2px;
+    padding: 0 10px;
+}
+.search-box{
+    margin-bottom: 20px !important;
+}
+.operating-containt span{
+    color: #3778fc;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.operating-containt span:before{
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 4px;
+}
+.operating-containt .down:before{
+    background: url(../images/op_down.png) no-repeat left 3px;
+}
+.operating-containt .delete:before{
+    background: url(../images/op_dele.png) no-repeat left 3px;
+}
+.operating-containt .move:before{
+    background: url(../images/op_move.png) no-repeat left 3px;
+}
+.operating-containt .copy:before{
+    background: url(../images/op_copy.png) no-repeat left 3px;
+}
+.operating-containt .rename:before{
+    background: url(../images/op_rename.png) no-repeat left 3px;
+}
+.operating-containt .share:before{
+    background: url(../images/op_share.png) no-repeat left 3px;
+}
+.tableparentdiv{
+    margin-top: 15px;
+}
+.tableparentdiv tr{
+    border-bottom: 1px solid #ececec;
+    height: 45px;
+}
+.tableparentdiv tr:first-child{
+    /*border-bottom: none;*/
+}
+.tableparentdiv  tbody tr:first-child{
+    border-top: 1px solid #ececec !important;
+}
+.tableparentdiv td{
+    padding: 6px 5px;
+    font-size: 13px !important;
+}
+.tableparentdiv td img{
+    width: 20px;
+    height: 20px;
+}
+.tableparentdiv td input{
+    margin: 0 !important;
+}
+.operating-containt input{
+    position: relative;
+    top: 2px;
+    left: 5px;
+    margin-right: 30px;
+}
+
+.operating-containt>i{
+    margin-right: 60px;
+}
+
+.mkdirTr input{
+    width: 180px;
+    height: 30px;
+    padding-left: 5px;
+    float: left;
+}
+.mkdirTr{
+    margin-top: 15px;
+    overflow: hidden;
+}
+.mkdirTr i{
+    display: inline-block;
+    width:20px;
+    height:30px;
+    border-radius: 50%;
+    margin: 0 10px 0 10px;
+    float: left;
+}
+
+

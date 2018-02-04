@@ -1,0 +1,118 @@
+input:-webkit-autofill {
+	background-color: #fff !important;
+	background-image: none !important;
+	color: rgb(0, 0, 0) !important;
+}
+
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	background: #fff url(../image/star/checkBox.png);
+	background-position: -96px 0 !important;
+	height: 22px;
+	vertical-align: middle;
+	width: 22px;
+}
+
+input[type="checkbox"]:checked {
+	background-position: -48px 0 !important;
+}
+
+input[type="checkbox"][disabled]:checked {
+	background-position: -96px 0 !important;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	background: url('../image/login/loginBack.png') 100% 0%/cover no-repeat;
+	overflow-x: hidden;
+	font-family:'微软雅黑';
+}
+
+.loginForm {
+	position: absolute;
+	top: 24%;
+	left: 40%;
+	height: 421px;
+	width: 399px;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+.headInfo {
+	position: absolute;
+	height: 120px;
+	width: 100%;
+	font-size: 44px;
+	color: #ffffff;
+	left: 18%;
+	top: 5%
+}
+
+.devideLine {
+	position: absolute;
+	display: inline-block;
+	border-left: 2px #FFFFFF solid;
+	height: 55px;
+	font-size: 24px;
+	color: #ffffff;
+	line-height: 50px;
+	padding-left: 25px;
+	margin-left: 25px;
+	margin-top: 5px;
+}
+
+.loginForm>form {
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	font-family: "微软雅黑";
+}
+
+input {
+	outline: none;
+	border: none;
+}
+
+#username {
+	background: url(../image/login/usernameInput.png) 97% 10px no-repeat;
+}
+
+#password {
+	background: url(../image/login/passwordInput.png) 97% 10px no-repeat;
+}
+
+#username, #password {
+	padding-left: 10px;
+	width: 83%;
+	background-color: #FFFFFF;
+	height: 45px;
+	margin-left: 33px;
+	margin-bottom: 25px;
+	margin-top: 20px;
+}
+
+.checks {
+	font-size: 12px;
+	color: #666666;
+	width: 85%;
+	margin: 0 auto;
+	line-height: 30px;
+}
+
+#login_btn {
+	width: 83%;
+	height: 45px;
+	margin-left: 34px;
+	margin-top: 20px;
+	background: #1AB394;
+	color: #fff;
+	font-size: 18px;
+	text-align: center;
+	line-height: 45px;
+}
+#login_btn:active{
+	background: #21A68B;
+	color: #fff;
+}

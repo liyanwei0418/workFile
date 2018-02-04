@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.classcard.persistence.dao.A_ClassSpacePictureMapper">
+<select id="findThreePic" resultType="cn.gukeer.classcard.persistence.entity.ClassSpacePicture">
+    SELECT
+    id,pic_name picName,pid,class_id classId,class_card_id classCardId,pic_url picUrl,pic_title picTitle
+        FROM
+            teach_class_card_picture p
+        WHERE
+            p.class_id = #{classId}
+                AND pid != 'hdly'
+                AND pid != '-1'
+                AND pid != 'bgzl'
+                and p.del_flag=0
+        ORDER BY p.create_date DESC
+        LIMIT 3
+</select>
+</mapper>

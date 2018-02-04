@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.MonitorMapper" >
+  <resultMap id="BaseResultMap" type="cn.gukeer.platform.persistence.entity.Monitor" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="cpu" property="cpu" jdbcType="VARCHAR" />
+    <result column="jvm" property="jvm" jdbcType="VARCHAR" />
+    <result column="ram" property="ram" jdbcType="VARCHAR" />
+    <result column="toemail" property="toemail" jdbcType="VARCHAR" />
+    <result column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <result column="open_url" property="openUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cpu, jvm, ram, toemail, client_id, open_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gukeer.platform.persistence.entity.MonitorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_monitor
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_monitor
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gukeer.platform.persistence.entity.MonitorExample" >
+    delete from sys_monitor
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gukeer.platform.persistence.entity.Monitor" >
+    insert into sys_monitor (id, cpu, jvm, 
+      ram, toemail, client_id, 
+      open_url)
+    values (#{id,jdbcType=VARCHAR}, #{cpu,jdbcType=VARCHAR}, #{jvm,jdbcType=VARCHAR}, 
+      #{ram,jdbcType=VARCHAR}, #{toemail,jdbcType=VARCHAR}, #{clientId,jdbcType=VARCHAR}, 
+      #{openUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gukeer.platform.persistence.entity.Monitor" >
+    insert into sys_monitor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cpu != null" >
+        cpu,
+      </if>
+      <if test="jvm != null" >
+        jvm,
+      </if>
+      <if test="ram != null" >
+        ram,
+      </if>
+      <if test="toemail != null" >
+        toemail,
+      </if>
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="openUrl != null" >
+        open_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cpu != null" >
+        #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="jvm != null" >
+        #{jvm,jdbcType=VARCHAR},
+      </if>
+      <if test="ram != null" >
+        #{ram,jdbcType=VARCHAR},
+      </if>
+      <if test="toemail != null" >
+        #{toemail,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null" >
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="openUrl != null" >
+        #{openUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sys_monitor
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cpu != null" >
+        cpu = #{record.cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jvm != null" >
+        jvm = #{record.jvm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ram != null" >
+        ram = #{record.ram,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toemail != null" >
+        toemail = #{record.toemail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientId != null" >
+        client_id = #{record.clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openUrl != null" >
+        open_url = #{record.openUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sys_monitor
+    set id = #{record.id,jdbcType=VARCHAR},
+      cpu = #{record.cpu,jdbcType=VARCHAR},
+      jvm = #{record.jvm,jdbcType=VARCHAR},
+      ram = #{record.ram,jdbcType=VARCHAR},
+      toemail = #{record.toemail,jdbcType=VARCHAR},
+      client_id = #{record.clientId,jdbcType=VARCHAR},
+      open_url = #{record.openUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gukeer.platform.persistence.entity.Monitor" >
+    update sys_monitor
+    <set >
+      <if test="cpu != null" >
+        cpu = #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="jvm != null" >
+        jvm = #{jvm,jdbcType=VARCHAR},
+      </if>
+      <if test="ram != null" >
+        ram = #{ram,jdbcType=VARCHAR},
+      </if>
+      <if test="toemail != null" >
+        toemail = #{toemail,jdbcType=VARCHAR},
+      </if>
+      <if test="clientId != null" >
+        client_id = #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="openUrl != null" >
+        open_url = #{openUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gukeer.platform.persistence.entity.Monitor" >
+    update sys_monitor
+    set cpu = #{cpu,jdbcType=VARCHAR},
+      jvm = #{jvm,jdbcType=VARCHAR},
+      ram = #{ram,jdbcType=VARCHAR},
+      toemail = #{toemail,jdbcType=VARCHAR},
+      client_id = #{clientId,jdbcType=VARCHAR},
+      open_url = #{openUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

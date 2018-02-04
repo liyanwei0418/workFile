@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+
+    <!--发送到数据中心 jms配置 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!begin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <bean id="ConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory">
+            <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                <property name="brokerURL" value="${sync.address.activemq}"/>
+                <property name="useAsyncSend" value="true"/>
+                <property name="userName" value="${sync.username.activemq}"/>
+                <property name="password" value="${sync.password.activemq}"/>
+            </bean>
+        </property>
+        <property name="maxConnections" value="100"></property>
+    </bean>
+
+    <bean id="Destination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>${sync.receive.queue}</value>
+        </constructor-arg>
+    </bean>
+
+
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="ConnectionFactory"/>
+        <!-- 客户端调用acknowledge方法手动签收 -->
+        <property name="sessionAcknowledgeMode" value="1"/>
+        <property name="defaultDestination" ref="Destination"/>
+        <property name="pubSubDomain" value="false"/>
+        <property name="sessionTransacted" value="true"/>
+    </bean>
+    <!--发送到数据中心 jms配置 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!end!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+    <!--异步接收开课结果 jms配置 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!begin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+    <!--  <bean id="ConnectionFactoryReceive" class="org.apache.activemq.pool.PooledConnectionFactory">
+          <property name="connectionFactory">
+              <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+                  <property name="brokerURL" value="${sync.receive.url}"/>
+                  <property name="useAsyncSend" value="true"/>
+                  <property name="userName" value="${sync.receive.agent}"/>
+                  <property name="password" value="${sync.receive.accesskey}"/>
+              </bean>
+          </property>
+          <property name="maxConnections" value="100"></property>
+      </bean>
+  
+      <bean id="jmsTemplateReceive" class="org.springframework.jms.core.JmsTemplate">
+          <property name="connectionFactory" ref="ConnectionFactoryReceive"/>
+          <property name="sessionAcknowledgeMode" value="1"/>
+          <property name="defaultDestination" ref="Destination"/>
+          <property name="pubSubDomain" value="false"/>
+          <property name="sessionTransacted" value="true"/>
+      </bean>
+  
+  
+      <bean id="Destination" class="org.apache.activemq.command.ActiveMQQueue">
+          &lt;!&ndash; 设置消息队列的名字 &ndash;&gt;
+          <constructor-arg>
+              <value>${sync.receive.queue}</value>
+          </constructor-arg>
+      </bean>
+  
+      <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+          <property name="connectionFactory" ref="ConnectionFactoryReceive"/>
+          <property name="destination" ref="Destination"/>
+          <property name="sessionTransacted" value="true"/>
+          <property name="messageListener">
+              <bean id="queueMessageListener" class="cn.gukeer.sync.service.pull.QueueMessageListener"/>
+          </property>
+      </bean>-->
+    <!--异步接收开课结果 jms配置 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!end!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+</beans>

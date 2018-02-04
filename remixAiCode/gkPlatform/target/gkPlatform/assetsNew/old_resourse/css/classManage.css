@@ -1,0 +1,51 @@
+section{overflow:hidden;padding-top:45px;width:1200px;margin:0 auto;font:'微软雅黑'}
+aside{width:22%;float:left;}
+ul{list-style:none;margin:0;padding:0;}
+.list{overflow:hidden;}
+.list li{cursor:pointer;float:left;display:inline-block;width:50%;text-align:center;padding:10px 0;color:#666;border-bottom:3px solid transparent}
+.list li.active{color:#1AB394;border-bottom:3px solid #1AB394;}
+div.tree1{margin-top:10px;}
+ul#tree1 li#tree1_1{margin:0;position:relative;top:-26px;}
+#main{float:right;width:76%;}
+#main1{width:100%;}
+.xjTableHeader input[type=button]{
+    margin-right:5px;
+    border:1px solid #1AB394;
+    background:#1AB394;
+    color:#fff;
+    border-radius:3px;
+    padding:0 10px;
+    text-align:center;
+}
+.xjTableHeader .searchInput{border:1px solid #1AB394;}
+table.table tr th{font-weight:normal;color:#333;}
+table.table tr td:last-child .edit{color:lightgreen;cursor: pointer}
+table.table tr td:last-child .del{color:red;cursor: pointer}
+.xjSelect{width:15%;height:35px;border-radius:4px;padding-left:5px;}
+h3{margin:0;font-size:16px;color:#1AB394;font-weight:400;padding:5px 10px;border-left:3px solid #1AB394;}
+.baseSetting{margin:20px 0;font-size:14px;color:#666;}
+p.title{margin:0;padding:8px 0;border-bottom:1px solid #a9a9a9;}
+.baseSetting .items{overflow:hidden;width:85%;margin:10px auto;}
+.baseSetting .items li{float:left;width:50%;margin:10px 0;}
+.baseSetting .items li span{display:inline-block;width:25%;text-align:right;margin-right:10px;}
+.baseSetting .items li input{width:50%;height:23px;}
+.blockSetting{font-size:14px;color:#666;}
+.blockSetting table{margin:10px auto;text-align:center;}
+.blockSetting table th{font-weight:400;color:#333;}
+.blockSetting table td{padding:10px 0;}
+.blockSetting table td input{padding-left:5px;width:55%;height:23px;}
+form{overflow:hidden;width:100%;font-size:14px;color:#333;padding:10px 0;}
+.left{float:left;width:45%;}
+.right{float:right;width:45%;}
+.upload{padding:20px 0;}
+.upload span{margin:10px 0;display:block;background:#ddd;width:100px;height:100px;}
+.upload div{padding:10px 0;color:#999;}
+.upload input{padding:3px 8px;}
+/*.right .upload span{margin:10px 0;display:block;background:#ddd;width:451px;height:100px;}*/
+.left input[type=submit]{background:#1AB394;border:1px solid #1AB394;border-radius:4px;color:#fff;padding:5px 15px;}
+button{padding:5px 18px;color:#fff;background:#1AB394;border:1px solid #1AB394;}
+.blockItems{padding:15px;}
+.blockItems li{margin:15px 0;}
+.blockItems li span{display:inline-block;width:13%;text-align:right;}
+.blockItems li input.laydate-icon{width:12%;}
+.explain{font:14px '微软雅黑';color:#E51C23;padding:20px 30px;}

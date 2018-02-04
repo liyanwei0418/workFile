@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_RefTeacherClassMapper">
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.persistence.entity.TeacherClass"
+               extends="cn.gukeer.platform.persistence.dao.TeacherClassMapper.BaseResultMap">
+    </resultMap>
+
+    <select id="findMasterByClassIdListAndType" resultMap="ExtensionBaseResultMap" parameterType="java.util.List">
+
+        SELECT c.`name` AS cname,c.id AS cid,t.id,t.`name` AS
+        tname,ref.`class_id`,ref.`teacher_id`,ref.type,ref.cycle_id AS cycleId,cs.id AS
+        csId,cs.name AS csname
+        FROM
+        ref_teacher_class ref ,user_teacher t,
+        org_grade_class c LEFT JOIN org_class_section cs ON cs.`id`=c.`xd`
+
+        WHERE
+        c.`id` =ref.class_id AND t.id = ref.teacher_id
+
+        AND ref.`type`=1
+        AND c.xd=#{xdId}
+        AND c.nj=#{nj}
+        AND t.del_flag=0
+        <if test="cycleId != null and cycleId !='' ">
+            AND ref.cycle_id =#{cycleId}
+        </if>
+        ORDER BY c.id
+
+
+        <!--<if test="list != null and list.size>0 ">
+            AND ref.class_id IN
+            <foreach item="classId" index="index" collection="list" open="(" separator="," close=")">
+                #{classId}
+            </foreach>
+        </if>-->
+    </select>
+</mapper>

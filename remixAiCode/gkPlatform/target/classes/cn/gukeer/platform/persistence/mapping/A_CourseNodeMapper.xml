@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_CourseNodeMapper">
+    <insert id="batchSaveCourseNode">
+        insert into teach_course_node
+        (id, school_id, course_node_init_id,
+        cycle_id, cycle_year, cycle_semester,
+        node, node_name, start_time,
+        end_time, morning_afternoon, week,
+        create_time, update_time, update_by,
+        del_flag, summer_winter_time)
+        values
+        <foreach collection="courseNodeList" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=VARCHAR}, #{item.schoolId,jdbcType=VARCHAR}, #{item.courseNodeInitId,jdbcType=VARCHAR},
+            #{item.cycleId,jdbcType=VARCHAR}, #{item.cycleYear,jdbcType=VARCHAR},
+            #{item.cycleSemester,jdbcType=INTEGER},
+            #{item.node,jdbcType=INTEGER}, #{item.nodeName,jdbcType=VARCHAR}, #{item.startTime,jdbcType=BIGINT},
+            #{item.endTime,jdbcType=BIGINT}, #{item.morningAfternoon,jdbcType=VARCHAR}, #{item.week,jdbcType=INTEGER},
+            #{item.createTime,jdbcType=BIGINT}, #{item.updateTime,jdbcType=BIGINT}, #{item.updateBy,jdbcType=VARCHAR},
+            #{item.delFlag,jdbcType=INTEGER}, #{item.summerWinterTime,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+
+    <insert id="batchSaveCourseNodeInit">
+        insert into teach_course_node_init (id, school_id, name,
+        cycle_id, cycle_year, cycle_semester,
+        start_week, end_week, create_time,
+        update_by, del_flag)
+        values
+        <foreach collection="courseNodeInitList" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=VARCHAR}, #{item.schoolId,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+            #{item.cycleId,jdbcType=VARCHAR}, #{item.cycleYear,jdbcType=VARCHAR}, #{item.cycleSemester,jdbcType=INTEGER},
+            #{item.startWeek,jdbcType=INTEGER}, #{item.endWeek,jdbcType=INTEGER}, #{item.createTime,jdbcType=BIGINT},
+            #{item.updateBy,jdbcType=VARCHAR}, #{item.delFlag,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+</mapper>

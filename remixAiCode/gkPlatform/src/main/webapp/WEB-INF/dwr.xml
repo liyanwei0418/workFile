@@ -1,0 +1,12 @@
+<!DOCTYPE dwr PUBLIC
+        "-//GetAhead Limited//DTD Direct Web Remoting 3.0//EN"
+        "http://getahead.org/dwr/dwr30.dtd">
+
+<dwr>
+    <allow>
+        <!-- 这里的javascript 值就是页面引用的第三个js文件的名称-->
+        <create creator="new" javascript="NotifyJs">
+            <param name="class">cn.gukeer.common.dwr.NotifyJs</param>
+        </create>
+    </allow>
+</dwr>

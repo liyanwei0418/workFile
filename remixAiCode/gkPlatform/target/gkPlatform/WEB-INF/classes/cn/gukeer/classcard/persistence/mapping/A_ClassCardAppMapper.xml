@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.classcard.persistence.dao.A_ClassCardAppMapper">
+
+    <select id="findAllClassCardAppView" resultType="cn.gukeer.classcard.modelView.ClassCardAppView">
+    SELECT
+        tcca.id,
+        tcca.app_name appName,
+        tcca.create_date createDate,
+        su.name uploadPersion
+    FROM
+        teach_class_card_app tcca,
+        sys_user su
+    WHERE
+        tcca.create_by = su.id
+        <if test='appName !="" and appName !=null'>
+            AND tcca.app_name  like   CONCAT('%',#{appName},'%')
+        </if>
+        AND tcca.del_flag = 0
+        AND su.del_flag = 0
+        AND tcca.school_id=#{schoolId}
+        order by createDate desc
+</select>
+    <insert id="batchInsertClassCardAppRef" parameterType="java.util.List">
+        insert into  teach_ref_classcard_app
+            (id,class_card_id,class_card_app_id,school_id)
+        values
+        <foreach collection="classCardAppRefs" item="item" separator=",">
+            (#{item.id},#{item.classCardId},#{item.classCardAppId},#{item.schoolId})
+        </foreach>
+
+    </insert>
+
+</mapper>

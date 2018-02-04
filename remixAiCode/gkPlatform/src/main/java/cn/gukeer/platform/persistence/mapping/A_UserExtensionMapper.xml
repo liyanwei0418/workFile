@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_UserExtensionMapper">
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.modelView.UserView"
+               extends="cn.gukeer.platform.persistence.dao.UserMapper.BaseResultMap"/>
+
+    <select id="selectUserByEmail" resultMap="ExtensionBaseResultMap" parameterType="String">
+        select
+        <include refid="cn.gukeer.platform.persistence.dao.UserMapper.Base_Column_List"/>
+        from sys_user
+    </select>
+
+    <!-- 批量插入生成的账号 -->
+    <insert id="insertUserBatch" parameterType="java.util.List">
+        <selectKey resultType="java.lang.Integer" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into sys_user (
+        id,
+        school_id,
+        username,
+        password,
+        name,
+        ref_id,
+        user_type,
+        photo_url,
+        login_flag,
+        login_mark,
+        create_by,
+        create_date,
+        update_by,
+        update_date,
+        remarks
+        )
+        values
+        <foreach collection="list" item="user" index="index" separator=",">
+            (
+            #{user.id,jdbcType=INTEGER},
+            #{user.schoolId,jdbcType=INTEGER},
+            #{user.username,jdbcType=VARCHAR},
+            #{user.password,jdbcType=VARCHAR},
+            #{user.name,jdbcType=VARCHAR},
+            #{user.refId,jdbcType=INTEGER},
+            #{user.userType,jdbcType=INTEGER},
+            #{user.photoUrl,jdbcType=VARCHAR},
+            #{user.loginFlag,jdbcType=INTEGER},
+            #{user.loginMark,jdbcType=VARCHAR},
+            #{user.createBy,jdbcType=INTEGER},
+            #{user.createDate,jdbcType=BIGINT},
+            #{user.updateBy,jdbcType=INTEGER},
+            #{user.updateDate,jdbcType=BIGINT},
+            #{user.remarks,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+
+    <insert id="insertUserRoleBatch" parameterType="java.util.List">
+        insert into ref_user_role (
+        user_id, role_id, school_id
+        )
+        values
+        <foreach collection="list" item="userRole" index="index" separator=",">
+            (
+            #{userRole.userId,jdbcType=VARCHAR}, #{userRole.roleId,jdbcType=VARCHAR}, #{userRole.schoolId,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

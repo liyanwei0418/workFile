@@ -1,0 +1,160 @@
+.main {
+    width: 1170px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff
+}
+
+.main #tabs > ul {
+    margin: 0;
+    height: 45px;
+    border-bottom: 1px solid #aaa
+}
+
+.main #tabs > ul li {
+    float: left;
+    background: #fff
+}
+
+.main #tabs > ul li a {
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+    line-height: 44px;
+    font-size: 15px;
+    color: #777;
+    text-decoration: none
+}
+
+.main #tabs > ul li .active {
+    color: #525252;
+    border: 1px solid #aaa;
+    border-bottom: 0;
+    position: relative
+}
+
+#base-information {
+    padding: 25px 20px;
+    overflow: hidden
+}
+
+#base-information aside {
+    width: 50%;
+    padding-left: 15px;
+    float: left
+}
+
+#base-information aside > div {
+    margin-bottom: 30px;
+    font-size: 13px
+}
+
+#base-information aside > div span:first-child {
+    display: inline-block;
+    width: 85px;
+    color: #777
+}
+
+#base-information aside > div span:last-child {
+    color: #525252
+}
+
+#base-information aside > div span:last-child input {
+    height: 28px;
+    outline: 0;
+    padding-left:5px;
+    border:1px solid #ddd;
+}
+
+#base-information section {
+    float: left;
+    padding-left: 35px;
+    width: 50%
+}
+
+#base-information section p {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px
+}
+
+/*#base-information section div {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    background: url(../images/account-icon.png) no-repeat left bottom
+}*/
+
+#base-information section button {
+    color: #fff;
+    width: 100px;
+    height: 30px;
+    border: 1px solid #00b7ee;
+    border-radius: 2px;
+    background: #00b7ee;
+    margin-top:30px;
+}
+
+#base-information footer {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center
+}
+
+#base-information footer button {
+    width: 70px;
+    height: 30px;
+    border: 1px solid #54ab37;
+    background: #54ab37;
+    color: #fff;
+    border-radius: 2px
+}
+
+#change-pwd {
+    padding-left: 35px;
+    display: none;
+    margin-top: 45px
+}
+
+#change-pwd > p {
+    color: #f92b3e;
+    font-size: 14px;
+    margin-bottom: 10px
+}
+
+#change-pwd > div {
+    font-size: 13px;
+    margin: 25px 0
+}
+
+#change-pwd > div span:first-child {
+    width: 85px;
+    line-height: 30px;
+    color: #777
+}
+
+#change-pwd > div span:nth-child(2) {
+    margin-right: 20px
+}
+
+#change-pwd > div span:nth-child(2) input {
+    width: 230px;
+    height: 32px;
+    outline: 0;
+    padding-left:5px;
+}
+
+#change-pwd > div span:last-child {
+    color: #999
+}
+
+#change-pwd > footer button {
+    width: 70px;
+    height: 30px;
+    border: 1px solid #54ab37;
+    background: #54ab37;
+    color: #fff;
+    border-radius: 2px;
+    margin-left: 85px
+}

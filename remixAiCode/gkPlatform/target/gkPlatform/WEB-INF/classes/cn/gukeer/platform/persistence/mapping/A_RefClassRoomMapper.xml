@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_RefClassRoomMapper">
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.persistence.entity.RefClassRoom"
+               extends="cn.gukeer.platform.persistence.dao.RefClassRoomMapper.BaseResultMap">
+    </resultMap>
+    <resultMap id="ExtensionBaseResultMapView" type="cn.gukeer.platform.modelView.RefClassRoomView">
+        <result column="refId" property="refId" jdbcType="VARCHAR"/>
+        <result column="cid" property="gradeClassId" jdbcType="VARCHAR"/>
+        <result column="nj" property="nj" jdbcType="INTEGER"/>
+        <result column="cname" property="banji" jdbcType="VARCHAR"/>
+        <result column="sectionId" property="sectionId" jdbcType="VARCHAR"/>
+        <result column="sectionName" property="sectionName" jdbcType="VARCHAR"/>
+        <result column="typeId" property="schoolTypeId" jdbcType="VARCHAR"/>
+        <result column="typeName" property="schoolTypeName" jdbcType="VARCHAR"/>
+        <result column="roomId" property="roomId" jdbcType="VARCHAR"/>
+        <result column="buildingName" property="teachBuildingName" jdbcType="VARCHAR"/>
+        <result column="roomNum" property="roomNum" jdbcType="VARCHAR"/>
+
+
+    </resultMap>
+    <select id="findAllRefClassRoomByClassRoomId" resultMap="ExtensionBaseResultMap" parameterType="java.util.List">
+        SELECT * FROM
+        teach_ref_class_room ref
+        WHERE ref.room_id IN
+        <foreach collection="classRoomListByschoolId" index="index" item="classRoom" open="(" close=")" separator=",">
+            (#{classRoom.id})
+        </foreach>
+    </select>
+
+
+    <insert id="batchInsertRefClassRoom" parameterType="java.util.List">
+        INSERT INTO teach_ref_class_room
+        (`id`,
+        `room_id`,
+        `grade_class`,
+        `cycle_id`,
+        school_type_id
+        )
+        values
+        <foreach collection="correctRefClassRoomList" item="refRoomClass" index="index" separator=",">
+            (
+            #{refRoomClass.id},#{refRoomClass.roomId},#{refRoomClass.gradeClass},#{refRoomClass.cycleId},#{refRoomClass.schoolTypeId}
+            )
+        </foreach>
+    </insert>
+
+
+    <select id="getRefClassRoomList" resultMap="ExtensionBaseResultMapView">
+        SELECT section.`id` AS sectionId,section.`name` AS sectionName,class.`id` AS cid,class.`name` AS
+        cname,class.nj,room.`id` AS roomId,room.teach_building AS buildingName,room.`room_num` AS roomNum,stype.`id` AS
+        typeId,stype.`name` AS typeName,ref.id AS refId
+        FROM teach_ref_class_room ref,
+        org_grade_class class LEFT JOIN org_class_section section ON class.`xd`=section.`id` AND
+        section.`school_id`=#{schoolId},
+        teach_class_room room LEFT JOIN org_school_type stype ON room.`school_type`= stype.`id` AND
+        stype.`school_id`=#{schoolId}
+        WHERE
+        class.`id`=ref.`grade_class` AND room.`id`=ref.`room_id`
+        <if test="cycleId != null and cycleId != ''">
+            AND ref.`cycle_id`=#{cycleId}
+        </if>
+        <if test="schoolId != null and schoolId != ''">
+            AND stype.`school_id`= #{schoolId} AND class.`school_id`=#{schoolId} AND room.`school_id`=#{schoolId}
+        </if>
+        <if test="xdId != null and xdId != ''">
+            AND class.xd= #{xdId}
+        </if>
+        <if test="nj != 0">
+            AND class.nj = #{nj}
+        </if>
+    </select>
+
+    <select id="findRefClassRoomViewByRefId" resultMap="ExtensionBaseResultMapView">
+        SELECT section.`id` AS sectionId,section.`name` AS sectionName,class.`id` AS cid,class.`name` AS cname,class.nj,room.`id` AS roomId,room.teach_building AS buildingName,room.`room_num` AS roomNum,stype.`id` AS typeId,stype.`name` AS typeName,ref.id AS refId
+        FROM teach_ref_class_room ref,
+        org_grade_class class LEFT JOIN org_class_section section ON class.`xd`=section.`id` ,
+        teach_class_room room LEFT JOIN org_school_type stype ON room.`school_type`= stype.`id`
+        WHERE
+        class.`id`=ref.`grade_class` AND  room.`id`=ref.`room_id`
+        AND ref.`id`=#{refId}
+    </select>
+
+</mapper>

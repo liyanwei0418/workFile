@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="cn.gukeer.platform.persistence.entity.School" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="xz" property="xz" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="INTEGER" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="bg_picture" property="bgPicture" jdbcType="VARCHAR" />
+    <result column="home_text" property="homeText" jdbcType="VARCHAR" />
+    <result column="bottom_text" property="bottomText" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="m_id" property="mId" jdbcType="VARCHAR" />
+    <result column="master" property="master" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="fax" property="fax" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="patriarch_rule" property="patriarchRule" jdbcType="INTEGER" />
+    <result column="student_rule" property="studentRule" jdbcType="INTEGER" />
+    <result column="teacher_rule" property="teacherRule" jdbcType="INTEGER" />
+    <result column="short_flag" property="shortFlag" jdbcType="VARCHAR" />
+    <result column="deploy_url" property="deployUrl" jdbcType="VARCHAR" />
+    <result column="userable" property="userable" jdbcType="VARCHAR" />
+    <result column="primary_persion" property="primaryPersion" jdbcType="VARCHAR" />
+    <result column="deputy_persion" property="deputyPersion" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="BIGINT" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="BIGINT" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, parent_id, name, ename, sort, xz, code, type, grade, logo, bg_picture, home_text, 
+    bottom_text, address, m_id, master, zip_code, phone, fax, email, patriarch_rule, 
+    student_rule, teacher_rule, short_flag, deploy_url, userable, primary_persion, deputy_persion, 
+    create_by, create_date, update_by, update_date, remarks, del_flag
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gukeer.platform.persistence.entity.SchoolExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from org_school
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from org_school
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from org_school
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gukeer.platform.persistence.entity.SchoolExample" >
+    delete from org_school
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gukeer.platform.persistence.entity.School" >
+    insert into org_school (id, parent_id, name, 
+      ename, sort, xz, code, 
+      type, grade, logo, 
+      bg_picture, home_text, bottom_text, 
+      address, m_id, master, 
+      zip_code, phone, fax, 
+      email, patriarch_rule, student_rule, 
+      teacher_rule, short_flag, deploy_url, 
+      userable, primary_persion, deputy_persion, 
+      create_by, create_date, update_by, 
+      update_date, remarks, del_flag
+      )
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{ename,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{xz,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, 
+      #{bgPicture,jdbcType=VARCHAR}, #{homeText,jdbcType=VARCHAR}, #{bottomText,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{mId,jdbcType=VARCHAR}, #{master,jdbcType=VARCHAR}, 
+      #{zipCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{patriarchRule,jdbcType=INTEGER}, #{studentRule,jdbcType=INTEGER}, 
+      #{teacherRule,jdbcType=INTEGER}, #{shortFlag,jdbcType=VARCHAR}, #{deployUrl,jdbcType=VARCHAR}, 
+      #{userable,jdbcType=VARCHAR}, #{primaryPersion,jdbcType=VARCHAR}, #{deputyPersion,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=BIGINT}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gukeer.platform.persistence.entity.School" >
+    insert into org_school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="ename != null" >
+        ename,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="xz != null" >
+        xz,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="bgPicture != null" >
+        bg_picture,
+      </if>
+      <if test="homeText != null" >
+        home_text,
+      </if>
+      <if test="bottomText != null" >
+        bottom_text,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="mId != null" >
+        m_id,
+      </if>
+      <if test="master != null" >
+        master,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="fax != null" >
+        fax,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="patriarchRule != null" >
+        patriarch_rule,
+      </if>
+      <if test="studentRule != null" >
+        student_rule,
+      </if>
+      <if test="teacherRule != null" >
+        teacher_rule,
+      </if>
+      <if test="shortFlag != null" >
+        short_flag,
+      </if>
+      <if test="deployUrl != null" >
+        deploy_url,
+      </if>
+      <if test="userable != null" >
+        userable,
+      </if>
+      <if test="primaryPersion != null" >
+        primary_persion,
+      </if>
+      <if test="deputyPersion != null" >
+        deputy_persion,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="xz != null" >
+        #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="bgPicture != null" >
+        #{bgPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="homeText != null" >
+        #{homeText,jdbcType=VARCHAR},
+      </if>
+      <if test="bottomText != null" >
+        #{bottomText,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="master != null" >
+        #{master,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="patriarchRule != null" >
+        #{patriarchRule,jdbcType=INTEGER},
+      </if>
+      <if test="studentRule != null" >
+        #{studentRule,jdbcType=INTEGER},
+      </if>
+      <if test="teacherRule != null" >
+        #{teacherRule,jdbcType=INTEGER},
+      </if>
+      <if test="shortFlag != null" >
+        #{shortFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="deployUrl != null" >
+        #{deployUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userable != null" >
+        #{userable,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPersion != null" >
+        #{primaryPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deputyPersion != null" >
+        #{deputyPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update org_school
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ename != null" >
+        ename = #{record.ename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.xz != null" >
+        xz = #{record.xz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=INTEGER},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bgPicture != null" >
+        bg_picture = #{record.bgPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeText != null" >
+        home_text = #{record.homeText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bottomText != null" >
+        bottom_text = #{record.bottomText,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mId != null" >
+        m_id = #{record.mId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.master != null" >
+        master = #{record.master,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null" >
+        zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fax != null" >
+        fax = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patriarchRule != null" >
+        patriarch_rule = #{record.patriarchRule,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentRule != null" >
+        student_rule = #{record.studentRule,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacherRule != null" >
+        teacher_rule = #{record.teacherRule,jdbcType=INTEGER},
+      </if>
+      <if test="record.shortFlag != null" >
+        short_flag = #{record.shortFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deployUrl != null" >
+        deploy_url = #{record.deployUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userable != null" >
+        userable = #{record.userable,jdbcType=VARCHAR},
+      </if>
+      <if test="record.primaryPersion != null" >
+        primary_persion = #{record.primaryPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deputyPersion != null" >
+        deputy_persion = #{record.deputyPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update org_school
+    set id = #{record.id,jdbcType=VARCHAR},
+      parent_id = #{record.parentId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      ename = #{record.ename,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      xz = #{record.xz,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      grade = #{record.grade,jdbcType=INTEGER},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      bg_picture = #{record.bgPicture,jdbcType=VARCHAR},
+      home_text = #{record.homeText,jdbcType=VARCHAR},
+      bottom_text = #{record.bottomText,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      m_id = #{record.mId,jdbcType=VARCHAR},
+      master = #{record.master,jdbcType=VARCHAR},
+      zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      fax = #{record.fax,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      patriarch_rule = #{record.patriarchRule,jdbcType=INTEGER},
+      student_rule = #{record.studentRule,jdbcType=INTEGER},
+      teacher_rule = #{record.teacherRule,jdbcType=INTEGER},
+      short_flag = #{record.shortFlag,jdbcType=VARCHAR},
+      deploy_url = #{record.deployUrl,jdbcType=VARCHAR},
+      userable = #{record.userable,jdbcType=VARCHAR},
+      primary_persion = #{record.primaryPersion,jdbcType=VARCHAR},
+      deputy_persion = #{record.deputyPersion,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=BIGINT},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      update_date = #{record.updateDate,jdbcType=BIGINT},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gukeer.platform.persistence.entity.School" >
+    update org_school
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="ename != null" >
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="xz != null" >
+        xz = #{xz,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="bgPicture != null" >
+        bg_picture = #{bgPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="homeText != null" >
+        home_text = #{homeText,jdbcType=VARCHAR},
+      </if>
+      <if test="bottomText != null" >
+        bottom_text = #{bottomText,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mId != null" >
+        m_id = #{mId,jdbcType=VARCHAR},
+      </if>
+      <if test="master != null" >
+        master = #{master,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        fax = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="patriarchRule != null" >
+        patriarch_rule = #{patriarchRule,jdbcType=INTEGER},
+      </if>
+      <if test="studentRule != null" >
+        student_rule = #{studentRule,jdbcType=INTEGER},
+      </if>
+      <if test="teacherRule != null" >
+        teacher_rule = #{teacherRule,jdbcType=INTEGER},
+      </if>
+      <if test="shortFlag != null" >
+        short_flag = #{shortFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="deployUrl != null" >
+        deploy_url = #{deployUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="userable != null" >
+        userable = #{userable,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryPersion != null" >
+        primary_persion = #{primaryPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deputyPersion != null" >
+        deputy_persion = #{deputyPersion,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gukeer.platform.persistence.entity.School" >
+    update org_school
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      xz = #{xz,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      bg_picture = #{bgPicture,jdbcType=VARCHAR},
+      home_text = #{homeText,jdbcType=VARCHAR},
+      bottom_text = #{bottomText,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      m_id = #{mId,jdbcType=VARCHAR},
+      master = #{master,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      fax = #{fax,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      patriarch_rule = #{patriarchRule,jdbcType=INTEGER},
+      student_rule = #{studentRule,jdbcType=INTEGER},
+      teacher_rule = #{teacherRule,jdbcType=INTEGER},
+      short_flag = #{shortFlag,jdbcType=VARCHAR},
+      deploy_url = #{deployUrl,jdbcType=VARCHAR},
+      userable = #{userable,jdbcType=VARCHAR},
+      primary_persion = #{primaryPersion,jdbcType=VARCHAR},
+      deputy_persion = #{deputyPersion,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=BIGINT},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

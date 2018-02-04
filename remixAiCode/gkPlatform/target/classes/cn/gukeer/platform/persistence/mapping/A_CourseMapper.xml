@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_CourseMapper">
+    <resultMap id="BaseResultMap" type="cn.gukeer.platform.modelView.CourseView">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="school_id" property="schoolId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="english_name" property="englishName" jdbcType="VARCHAR"/>
+        <result column="cycle_id" property="cycleId" jdbcType="VARCHAR"/>
+        <result column="short_name" property="shortName" jdbcType="VARCHAR"/>
+        <result column="course_type" property="courseType" jdbcType="VARCHAR"/>
+        <result column="room_type" property="roomType" jdbcType="VARCHAR"/>
+        <result column="score" property="score" jdbcType="DOUBLE"/>
+        <result column="pass_score" property="passScore" jdbcType="DOUBLE"/>
+        <result column="del_flag" property="delFlag" jdbcType="INTEGER"/>
+        <result column="courseTypeName" property="courseTypeName" jdbcType="INTEGER"/>
+        <result column="roomTypeName" property="roomTypeName" jdbcType="INTEGER"/>
+    </resultMap>
+    <insert id="batchInsertCourse">
+        INSERT INTO `teach_course`
+        (`id`,
+        `school_id`,
+        `name`,
+        `english_name`,
+        `cycle_id`,
+        `short_name`,
+        `course_type`,
+        `room_type`,
+        `score`,
+        `pass_score`,
+        `del_flag`
+        )
+        values
+        <foreach collection="courseList" item="item" index="index" separator=",">
+            (
+            #{item.id},#{item.schoolId},#{item.name},#{item.englishName},#{item.cycleId},#{item.shortName},#{item.courseType},#{item.roomType},#{item.score},#{item.passScore},#{item.delFlag}
+            )
+        </foreach>
+    </insert>
+
+    <select id="findCourseBySchoolIdAndCycleId" resultMap="BaseResultMap">
+
+        SELECT
+        course.`id`,course.`course_type`,course.`cycle_id`,course.`english_name`,course.`name`,course.`room_type`,course.`school_id`,sc.`name` AS courseTypeName ,rtype.`name` AS roomTypeName
+        FROM
+        teach_course course LEFT JOIN teach_standard_course sc   ON sc.id = course.course_type LEFT JOIN teach_room_type rtype  ON course.`room_type`=rtype.`id`
+        WHERE
+
+        <if test="schoolId !='' and schoolId != null">
+            course.`school_id`= #{schoolId}
+        </if>
+
+        <if test="cycleId !='' and cycleId != null">
+          AND  course.`cycle_id`=#{cycleId}
+        </if>
+        AND course.del_flag=0
+        ORDER BY course.`create_date`
+    </select>
+</mapper>

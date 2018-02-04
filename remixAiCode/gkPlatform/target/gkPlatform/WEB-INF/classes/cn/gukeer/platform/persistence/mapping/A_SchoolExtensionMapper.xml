@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_SchoolExtensionMapper">
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.persistence.entity.School"
+               extends="cn.gukeer.platform.persistence.dao.SchoolMapper.BaseResultMap"/>
+
+    <select id="selectSchoolViewById" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT s.`grade`,s.`xz`,s.`logo`,u.`username` as managerName,u.`name`,s.`email`,s.`address`,s.`type`,s.`short_flag` as
+        shortFlag,s.`id`,s.`parent_id` AS parentId,s.`name` AS schoolName,s.`m_id` AS manId,s.`deploy_url`
+        AS deployUrl,SUBSTRING_INDEX(s.`deploy_url`,'.',-2) AS shortUrl FROM org_school s,sys_user u where
+        s.`del_flag`=0 AND s.`m_id`=u.`ref_id`
+        <if test="parentId != null and parentId.size() > 0">
+            AND (s.`parent_id` IN
+            <foreach item="parent" index="index" collection="parentId" open="(" separator="," close=")">
+                #{parent}
+            </foreach>
+            OR s.`id` IN
+            <foreach item="parent" index="index" collection="parentId" open="(" separator="," close=")">
+                #{parent}
+            </foreach>
+            )
+        </if>
+        <if test="parentId == null">
+            <if test="schoolId != null and schoolId!=''">
+                and s.`id`=#{schoolId}
+            </if>
+            <if test="name!=null and name!=''">
+                and s.`name` like #{name}
+            </if>
+        </if>
+        ORDER BY s.`id`
+    </select>
+
+    <select id="getSonSchoolList" resultMap="ExtensionBaseResultMap">
+      SELECT * FROM org_school WHERE parent_id = #{schoolId} ORDER BY grade
+    </select>
+
+
+    <insert id="insertSchoolBackId" parameterType="cn.gukeer.platform.persistence.entity.School"
+            useGeneratedKeys="true">
+        <selectKey resultType="java.lang.String" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into org_school (id, parent_id,
+        name, ename, sort, code, type, grade,
+        logo, address, m_id,
+        master, zip_code, phone,
+        fax, email, patriarch_rule,
+        student_rule, teacher_rule, short_flag,
+        deploy_url, userable, primary_persion,
+        deputy_persion, create_by, create_date,
+        update_by, update_date, remarks,
+        del_flag)
+        values (#{id}, #{parentId },
+        #{name,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},#{code,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER},
+        #{logo,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{mId,jdbcType=INTEGER},
+        #{master,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+        #{fax,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{patriarchRule,jdbcType=INTEGER},
+        #{studentRule,jdbcType=INTEGER}, #{teacherRule,jdbcType=INTEGER}, #{shortFlag,jdbcType=VARCHAR},
+        #{deployUrl,jdbcType=VARCHAR}, #{userable,jdbcType=VARCHAR}, #{primaryPersion,jdbcType=VARCHAR},
+        #{deputyPersion,jdbcType=VARCHAR}, #{createBy,jdbcType=INTEGER}, #{createDate,jdbcType=BIGINT},
+        #{updateBy,jdbcType=INTEGER}, #{updateDate,jdbcType=BIGINT}, #{remarks,jdbcType=VARCHAR},
+        #{delFlag,jdbcType=INTEGER})
+    </insert>
+
+</mapper>

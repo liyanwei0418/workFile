@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_CourseClassMapper">
+
+    <resultMap id="BaseResult" type="cn.gukeer.platform.modelView.CourseClassView">
+        <result column="refId" property="refId" jdbcType="VARCHAR"/>
+        <result column="cid" property="classId" jdbcType="VARCHAR"/>
+        <result column="cname" property="className" jdbcType="VARCHAR"/>
+        <result column="nj" property="nj" jdbcType="VARCHAR"/>
+        <result column="tid" property="teacherId" jdbcType="INTEGER"/>
+        <result column="tname" property="teacherName" jdbcType="INTEGER"/>
+        <result column="csId" property="classSectionId" jdbcType="VARCHAR"/>
+        <result column="csname" property="classSection" jdbcType="INTEGER"/>
+        <result column="tcID" property="courseId" jdbcType="VARCHAR"/>
+        <result column="tcname" property="courseName" jdbcType="VARCHAR"/>
+        <result column="courseHour" property="courseHour" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="batchInsertCourseClass">
+        INSERT INTO `teach_ref_course_class`
+        (`id`,
+        `class_id`,
+        `course_id`,
+        `teacher_id`,
+        course_hour
+        )
+        values
+        <foreach collection="courseClassList" item="item" index="index" separator=",">
+            (
+            #{item.id},#{item.classId},#{item.courseId},#{item.teacherId},#{item.courseHour}
+            )
+        </foreach>
+    </insert>
+
+
+    <!--查询所有教师安排的方法-->
+    <select id="findAllCourseTeacherBySchoolId" resultMap="BaseResult" parameterType="java.util.List">
+        SELECT
+        c.`name` AS cname,c.id AS cid,c.nj,c.xd,
+        t.id AS tid,t.`name` AS tname,t.no,
+        ref.`class_id`,ref.`teacher_id`,ref.id AS refId,ref.course_id AS courseId,
+        cs.name AS csname,cs.id AS csId,
+        tc.id AS tcID,tc.name AS tcname
+        FROM
+        org_grade_class c LEFT JOIN org_class_section cs ON c.xd = cs.id,
+        teach_ref_course_class ref,user_teacher t,teach_course tc
+        WHERE c.id = ref.class_id
+        AND t.id = ref.teacher_id
+
+        AND tc.id = ref.course_id
+        AND tc.school_id = #{schoolId}
+        AND c.school_id =#{schoolId}
+        <if test="gradeClassId != null and gradeClassId !=''">
+            AND ref.class_id=#{gradeClassId}
+        </if>
+        AND tc.del_flag=0
+        AND t.del_flag=0
+        AND c.del_flag=0
+        AND  cs.del_flag=0
+        AND t.del_flag=0
+    </select>
+
+    <select id="findRefCourseClassByCycleIdCourseId" resultMap="BaseResult" parameterType="java.util.List">
+        SELECT
+        c.`name` AS cname,c.id AS cid,
+        c.nj AS nj,c.xd,
+        ref.`class_id`,ref.id AS refId,ref.course_id AS courseId,ref.course_hour AS courseHour,
+        cs.name AS csname,cs.id AS csId,
+        tc.id AS tcID,tc.name AS tcname
+        FROM
+        org_grade_class c LEFT JOIN org_class_section cs ON c.xd = cs.id,
+        teach_ref_course_class ref,teach_course tc
+        WHERE
+        c.id = ref.class_id AND tc.id = ref.course_id
+        AND tc.cycle_id= #{cycleId} AND ref.course_id=#{courseId} AND tc.del_flag=0
+        GROUP BY nj
+    </select>
+
+
+    <delete id="batchDelByCourseId">
+        DELETE  FROM teach_ref_course_class
+            WHERE course_id= #{courseId}
+    </delete>
+
+</mapper>

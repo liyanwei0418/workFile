@@ -1,0 +1,629 @@
+nav {
+  background: #fff;
+}
+nav > .container {
+  padding: 15px;
+  padding-right: 0;
+}
+nav > .container div.roll-manage-title {
+  float: left;
+  font-size: 20px;
+  color: #333;
+  padding-left: 41px;
+  position: relative;
+}
+nav > .container div.roll-manage-title:before {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  left: -7px;
+  top: -4px;
+  background: url(../images/app3.png) no-repeat center center;
+  background-size: 100% 100%;
+}
+nav > .container .roll-manage-menu {
+  float: right;
+}
+nav > .container .roll-manage-menu ul {
+  overflow: hidden;
+  margin: 0;
+}
+nav > .container .roll-manage-menu ul li {
+  float: left;
+  margin-left: 20px;
+}
+nav > .container .roll-manage-menu ul li a {
+  text-decoration: none;
+  color: #525252;
+  font-size: 15px;
+  line-height: 30px;
+}
+nav > .container .roll-manage-menu ul li a.active {
+  color: #54AB37;
+}
+nav > .container .roll-manage-menu ul li:first-child {
+  margin: 0;
+}
+aside {
+  padding: 0;
+  padding-top: 20px;
+  padding-left: 5px;
+  height: 650px;
+  border-right: 1px solid #ddd;
+}
+aside > div {
+  overflow: hidden;
+}
+aside > div button {
+  height: 25px;
+  padding: 0 7px;
+  font-size: 12px;
+  margin-left: 4px;
+  border: 1px solid #54ab37;
+  background: #54ab37;
+  color: #fff;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  /* float: right; */
+}
+main.container {
+  border-top: 3px solid #54AB37;
+  margin-top: 20px;
+  padding: 0;
+}
+#ry-manage .search-box {
+  margin-top: 30px;
+  overflow: hidden;
+}
+#ry-manage .search-box .roll-operation {
+  float: left;
+}
+#ry-manage .search-box .roll-operation select {
+  height: 30px;
+  width: 130px;
+  border-radius: 2px;
+  padding-left: 5px;
+  color: #525252;
+  font-size: 14px;
+}
+#ry-manage .search-box .roll-operation button {
+  height: 30px;
+  padding: 0 15px;
+  margin-left: 4px;
+  border: 1px solid #54AB37;
+  background: #54AB37;
+  color: #fff;
+  border-radius: 2px;
+}
+#ry-manage .search-box .roll-operation button.roll-delete {
+  border: 1px solid #fd3a47;
+  background: #fd3a47;
+}
+#ry-manage .search-box .roll-research {
+  float: right;
+  overflow: hidden;
+}
+#ry-manage .search-box .roll-research button {
+  float: right;
+  height: 30px;
+  padding: 0 15px;
+  border: 1px solid #54AB37;
+  background: #54AB37;
+  color: #fff;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  position: relative;
+}
+#ry-manage .search-box .roll-research button:before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url(../images/icon-2.png) no-repeat -1px -65px;
+  position: absolute;
+  left: 7px;
+  top: 6px;
+}
+#ry-manage .search-box .roll-research input[type=text] {
+  width: 152px;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-right: none;
+  outline: none;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #999;
+  padding-left: 5px;
+}
+#ry-manage table {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 20px;
+}
+#ry-manage table th,
+#ry-manage table td {
+  padding: 5px 6px 5px 6px;
+  border: 1px solid #ddd;
+}
+#ry-manage table thead {
+  background: #E7EAEC;
+  color: #333;
+}
+#ry-manage table thead th {
+  height: 45px;
+}
+#ry-manage table tbody {
+  font-size: 12px;
+  color: #525252;
+}
+#ry-manage table tbody td {
+  height: 39px;
+}
+#ry-manage table tbody td:last-child span:first-child {
+  padding-left: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #54AB37;
+  background: url(../images/icon-edit.png) no-repeat left 3px;
+}
+#ry-manage table tbody td:last-child span:last-child {
+  padding-left: 20px;
+  cursor: pointer;
+  color: #fd3a47;
+  background: url(../images/icon-delete.png) no-repeat left 2px;
+}
+#zh-manage .stu-num-manage-menu {
+  margin-top: 30px;
+}
+#zh-manage .stu-num-manage-menu ul {
+  border-bottom: 1px solid #ddd;
+  height: 45px;
+}
+#zh-manage .stu-num-manage-menu ul li {
+  float: left;
+}
+#zh-manage .stu-num-manage-menu ul li a {
+  display: inline-block;
+  width: 135px;
+  height: 45px;
+  line-height: 44px;
+  font-size: 15px;
+  color: #777;
+  text-align: center;
+  text-decoration: none;
+}
+#zh-manage .stu-num-manage-menu ul li a.active {
+  color: #525252;
+  border: 1px solid #ddd;
+  border-bottom: 0;
+  background: #fff;
+}
+#zh-manage #generated > div:first-child {
+  overflow: hidden;
+  padding: 0 30px;
+  margin-top: 15px;
+}
+#zh-manage #generated > div:first-child button {
+  float: right;
+  height: 30px;
+  background: #54AB37;
+  width: 35px;
+  position: relative;
+  border: 1px solid #54AB37;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+#zh-manage #generated > div:first-child button:after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  background: url(../images/icon-2.png) no-repeat -1px -65px;
+}
+#zh-manage #generated > div:first-child input {
+  float: right;
+  height: 31px;
+  border: 1px solid #dadada;
+  border-right: none;
+  width: 152px;
+  padding-left: 5px;
+  outline: none;
+}
+#zh-manage #generated > div:nth-child(2) {
+  padding: 0 30px;
+}
+#zh-manage #generated > div:nth-child(2) table {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 20px;
+}
+#zh-manage #generated > div:nth-child(2) table th,
+#zh-manage #generated > div:nth-child(2) table td {
+  padding: 5px 6px 5px 6px;
+  border: 1px solid #ddd;
+}
+#zh-manage #generated > div:nth-child(2) table thead {
+  background: #E7EAEC;
+  color: #333;
+}
+#zh-manage #generated > div:nth-child(2) table thead th {
+  height: 45px;
+}
+#zh-manage #generated > div:nth-child(2) table tbody {
+  font-size: 12px;
+  color: #525252;
+}
+#zh-manage #generated > div:nth-child(2) table tbody td {
+  height: 39px;
+}
+#zh-manage #generated > div:nth-child(2) table tbody td:last-child span:first-child {
+  padding-left: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #54AB37;
+  background: url(../images/icon-edit.png) no-repeat left 3px;
+}
+#zh-manage #generated > div:nth-child(2) table tbody td:last-child span.reset {
+  padding-left: 20px;
+  cursor: pointer;
+  color: #FDA635;
+  background: url(../images/school-roll-icon1.png) no-repeat left 2px;
+}
+#zh-manage #generated > div:nth-child(3) > span {
+  font-size: 12px;
+  color: #fd3a47;
+  margin-left: 15px;
+  margin-top: 30px;
+}
+#zh-manage #not-generate {
+  display: none;
+}
+#zh-manage #not-generate > div:first-child {
+  margin-top: 15px;
+  padding: 0 30px;
+}
+#zh-manage #not-generate > div:first-child button {
+  height: 30px;
+  background: #54AB37;
+  color: #fff;
+  padding: 0 15px;
+  position: relative;
+  border: 1px solid #54AB37;
+  border-radius: 2px;
+}
+#zh-manage #not-generate > div:first-child span {
+  font-size: 12px;
+  color: #fd3a47;
+  margin-left: 10px;
+}
+#zh-manage #not-generate > div:nth-child(2) {
+  padding: 0 30px;
+}
+#zh-manage #not-generate > div:nth-child(2) table {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 20px;
+}
+#zh-manage #not-generate > div:nth-child(2) table th,
+#zh-manage #not-generate > div:nth-child(2) table td {
+  padding: 5px 6px 5px 6px;
+  border: 1px solid #ddd;
+}
+#zh-manage #not-generate > div:nth-child(2) table thead {
+  background: #E7EAEC;
+  color: #333;
+}
+#zh-manage #not-generate > div:nth-child(2) table thead th {
+  height: 45px;
+}
+#zh-manage #not-generate > div:nth-child(2) table tbody {
+  font-size: 12px;
+  color: #525252;
+}
+#zh-manage #not-generate > div:nth-child(2) table tbody td {
+  height: 39px;
+}
+#zh-manage #not-generate > div:nth-child(3) {
+  padding: 0 15px;
+}
+#bm-manage .search-box,
+#zw-manage .search-box {
+  margin-top: 30px;
+  overflow: hidden;
+}
+#bm-manage .search-box > p,
+#zw-manage .search-box > p {
+  float: left;
+  margin-bottom: 0;
+}
+#bm-manage .search-box > p button,
+#zw-manage .search-box > p button {
+  height: 30px;
+  background: #54AB37;
+  color: #fff;
+  padding: 0 15px;
+  position: relative;
+  border: 1px solid #54AB37;
+  border-radius: 2px;
+}
+#bm-manage .search-box .roll-research,
+#zw-manage .search-box .roll-research {
+  float: right;
+  overflow: hidden;
+}
+#bm-manage .search-box .roll-research button,
+#zw-manage .search-box .roll-research button {
+  float: right;
+  height: 30px;
+  padding: 0 15px;
+  border: 1px solid #54AB37;
+  background: #54AB37;
+  color: #fff;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  position: relative;
+}
+#bm-manage .search-box .roll-research button:before,
+#zw-manage .search-box .roll-research button:before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url(../images/icon-2.png) no-repeat -1px -65px;
+  position: absolute;
+  left: 7px;
+  top: 6px;
+}
+#bm-manage .search-box .roll-research input[type=text],
+#zw-manage .search-box .roll-research input[type=text] {
+  width: 152px;
+  height: 30px;
+  border: 1px solid #ddd;
+  border-right: none;
+  outline: none;
+  border-radius: 2px;
+  font-size: 12px;
+  color: #999;
+  padding-left: 5px;
+}
+#bm-manage .stu-num-manage-menu,
+#zw-manage .stu-num-manage-menu {
+  margin-top: 30px;
+}
+#bm-manage .stu-num-manage-menu ul,
+#zw-manage .stu-num-manage-menu ul {
+  border-bottom: 1px solid #ddd;
+  height: 45px;
+}
+#bm-manage .stu-num-manage-menu ul li,
+#zw-manage .stu-num-manage-menu ul li {
+  float: left;
+}
+#bm-manage .stu-num-manage-menu ul li a,
+#zw-manage .stu-num-manage-menu ul li a {
+  display: inline-block;
+  width: 135px;
+  height: 45px;
+  line-height: 44px;
+  font-size: 15px;
+  color: #777;
+  text-align: center;
+  text-decoration: none;
+}
+#bm-manage .stu-num-manage-menu ul li a.active,
+#zw-manage .stu-num-manage-menu ul li a.active {
+  color: #525252;
+  border: 1px solid #ddd;
+  border-bottom: 0;
+  background: #fff;
+}
+#bm-manage #column-manage-menu,
+#zw-manage #column-manage-menu {
+  margin-top: 30px;
+}
+#bm-manage #column-manage-menu .column-manage-operation button,
+#zw-manage #column-manage-menu .column-manage-operation button {
+  padding: 0 15px;
+  height: 30px;
+  color: #fff;
+  border-radius: 2px;
+}
+#bm-manage #column-manage-menu .column-manage-operation .column-manage-edit,
+#zw-manage #column-manage-menu .column-manage-operation .column-manage-edit {
+  border: 1px solid #54AB37;
+  background: #54AB37;
+  margin-right: 12px;
+}
+#bm-manage #column-manage-menu .column-manage-operation .column-manage-delete,
+#zw-manage #column-manage-menu .column-manage-operation .column-manage-delete {
+  border: 1px solid #fd3a47;
+  background: #fd3a47;
+}
+#bm-manage #column-manage-menu table,
+#zw-manage #column-manage-menu table {
+  margin-top: 20px;
+}
+#bm-manage #column-manage-menu table tbody tr,
+#zw-manage #column-manage-menu table tbody tr {
+  font-size: 14px;
+}
+#bm-manage #column-manage-menu table tbody tr td:first-child,
+#zw-manage #column-manage-menu table tbody tr td:first-child {
+  color: #666;
+}
+#bm-manage #column-manage-menu table tbody td,
+#zw-manage #column-manage-menu table tbody td {
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 5px 20px 5px 20px;
+  height: 39px;
+}
+#bm-manage #column-manage-menu table tbody td:last-child,
+#zw-manage #column-manage-menu table tbody td:last-child {
+  width: 200px;
+}
+#bm-manage #not-generate,
+#zw-manage #not-generate {
+  display: none;
+}
+#js-manage {
+  margin: 0;
+}
+#js-manage aside {
+  border-right: 1px solid #ddd;
+  padding: 0;
+  background: #fff;
+  min-height: 750px;
+  padding-top: 20px;
+  padding-left: 5px;
+}
+#js-manage main {
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 0;
+}
+#js-manage main > .rolls-distribute-add button {
+  width: 84px;
+  height: 30px;
+  color: #fff;
+  border-radius: 2px;
+  margin-right: 12px;
+  border: 1px solid #54AB37;
+  background: #54AB37;
+}
+#js-manage main table {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 20px;
+}
+#js-manage main table th,
+#js-manage main table td {
+  padding: 5px 6px 5px 6px;
+  border: 1px solid #ddd;
+}
+#js-manage main table thead {
+  background: #E7EAEC;
+  color: #333;
+}
+#js-manage main table thead th {
+  height: 45px;
+}
+#js-manage main table tbody {
+  font-size: 12px;
+  color: #525252;
+}
+#js-manage main table tbody td {
+  height: 39px;
+}
+#js-manage main table tbody td:last-child span {
+  padding-left: 20px;
+  color: #fc4c71;
+  cursor: pointer;
+  background: url(../images/icon-delete.png) no-repeat left 3px;
+}
+#js-manage main .fenye {
+  overflow: hidden;
+}
+#js-manage main .fenye .fenY2 {
+  margin: 30px 0 50px 0;
+  float: right;
+}
+.fenye {
+  overflow: hidden;
+}
+.fenye .fenY {
+  margin: 30px 0 50px 0;
+  float: right;
+}
+.fenye .fenY1 {
+  margin: 30px 0 50px 0;
+  float: right;
+}
+.fenye .fenY2 {
+  margin: 30px 0 50px 0;
+  float: right;
+}
+table.check {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 20px;
+}
+table.check th,
+table.check td {
+  padding: 5px 6px 5px 6px;
+  border: 1px solid #ddd;
+}
+table.check thead {
+  background: #E7EAEC;
+  color: #333;
+}
+table.check thead th {
+  height: 45px;
+}
+table.check tbody {
+  font-size: 12px;
+  color: #525252;
+}
+table.check tbody td {
+  height: 39px;
+}
+table.check tbody td:last-child span:first-child {
+  padding-left: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #54AB37;
+  background: url(../images/icon-edit.png) no-repeat left 3px;
+}
+table.check tbody td:last-child span:last-child {
+  padding-left: 20px;
+  cursor: pointer;
+  color: #fd3a47;
+  background: url(../images/icon-delete.png) no-repeat left 2px;
+}
+table.normal {
+  width: 100%;
+  font-size: 13px;
+  margin-top: 20px;
+}
+table.normal th,
+table.normal td {
+  padding: 5px 6px 5px 6px;
+  border: 1px solid #ddd;
+}
+table.normal thead {
+  background: #E7EAEC;
+  color: #333;
+}
+table.normal thead th {
+  height: 45px;
+}
+table.normal tbody {
+  font-size: 12px;
+  color: #525252;
+}
+table.normal tbody td {
+  height: 39px;
+}
+table.normal tbody td:last-child span.alter {
+  padding-left: 20px;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #54AB37;
+  background: url(../images/icon-edit.png) no-repeat left 3px;
+}
+table.normal tbody td:last-child span.reset {
+  padding-left: 20px;
+  cursor: pointer;
+  color: #FDA635;
+  background: url(../images/school-roll-icon1.png) no-repeat left 2px;
+}
+table.normal tbody td:last-child span.remove {
+  color: #FD3A47;
+  padding-left: 20px;
+  background: url(../images/remove.png) no-repeat left center;
+}

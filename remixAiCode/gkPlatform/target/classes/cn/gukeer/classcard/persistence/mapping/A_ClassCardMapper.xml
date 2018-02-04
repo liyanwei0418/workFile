@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.classcard.persistence.dao.A_ClassCardMapper">
+
+    <select id="selectByClassIdAndNj" resultType="cn.gukeer.classcard.modelView.ClassCardView">
+        SELECT
+            tcc.id,
+            tcc.equipment_name equipmentName,
+            CONCAT(tcr.teach_building,
+            '-',
+            tcr.floor,
+            '-',
+            tcr.room_num) locationName,
+            ogc.xq,
+            ogc.nj,
+            ogc.xd
+        FROM
+            teach_class_card tcc
+        LEFT JOIN
+            org_grade_class ogc ON tcc.class_id = ogc.id
+        LEFT JOIN
+            teach_class_room tcr ON tcc.teach_class_room_id = tcr.id
+        WHERE
+            tcc.school_id =  #{schoolId,jdbcType=INTEGER}
+            AND tcc.school_id = tcr.school_id
+            AND tcc.del_flag = 0
+            AND tcr.del_flag = 0
+        <if test='classId != null and classId.size>0'>
+            and tcc.class_id  in
+            <foreach item="classid" index="index" collection="classId"
+                     open="(" separator="," close=")">
+                #{classid}
+            </foreach>
+        </if>
+        <if test='xd !="" and xd!="0" and xd !=null'>
+            and ogc.xd = #{xd}
+        </if>
+        <if test="xq != '' and xq !=null">
+            and ogc.xq = #{xq,jdbcType=INTEGER}
+        </if>
+        <if test="nj != 0">
+            and ogc.nj = #{nj,jdbcType=INTEGER}
+        </if>
+        order by tcc.update_date desc
+    </select>
+
+
+    <select id="selectAllClassCardView" resultType="cn.gukeer.classcard.modelView.ClassCardView">
+        SELECT
+            tcc.id,
+            tcc.equipment_name equipmentName,
+            ocs.name xd,
+            ogc.nj
+        FROM
+            teach_class_card tcc
+        LEFT JOIN
+            org_grade_class ogc ON tcc.class_id = ogc.id
+        LEFT JOIN
+            org_class_section ocs ON ocs.id = ogc.xd
+            WHERE
+                    tcc.del_flag = 0
+                    AND tcc.school_id=#{schoolId}
+                    <if test='classIds != null and classIds.size>0'>
+                        AND ogc.id  in
+                        <foreach item="classid" index="index" collection="classIds"
+                                 open="(" separator="," close=")">
+                            #{classid}
+                        </foreach>
+                    </if>
+                    order by ogc.nj
+    </select>
+
+    <insert id="insertClassCardBatch">
+    INSERT INTO `teach_class_card`(id,
+        mac_id,
+        equipment_name,
+        teach_class_room_id,
+        class_id,
+        classroom,
+        class_slogan,
+        school_id,
+        update_by,
+        update_date,
+        create_by,
+        create_date,
+        del_flag,
+        boot_day_of_week,
+        start_boot_time_of_day,
+        end_boot_time_of_day)  values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},#{item.macId},#{item.equipmentName},#{item.teachClassRoomId},#{item.classId},
+            #{item.classroom},#{item.classSlogan},#{item.schoolId},#{item.updateBy},#{item.updateDate},#{item.createBy},
+            #{item.createDate},#{item.delFlag},#{item.bootDayOfWeek},#{item.startBootTimeOfDay},#{item.endBootTimeOfDay}
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="selectClassCardToSync" resultType="cn.gukeer.classcard.modelView.ClassCardView">
+        SELECT
+            card.id,
+            card.mac_id macId,
+            card.school_id schoolId,
+            school. NAME AS schoolName,
+            CONCAT_WS(
+                '-',
+                room.school_type_name,
+                room.teach_building,
+                room.teach_building_num,
+                room.floor,
+                room.room_num
+            ) AS locationName
+        FROM
+            teach_class_card card
+        LEFT JOIN org_school school ON school.id = card.school_id
+        LEFT JOIN teach_class_room room ON room.id = card.teach_class_room_id
+        WHERE
+            card.del_flag = 0
+        AND (
+            card.is_synchro = 1
+            OR card.is_synchro IS NULL
+        )
+    </select>
+
+    <select id="selectFreeClass" resultType="cn.gukeer.classcard.modelView.ClassCardView">
+       SELECT
+            a.id,
+            a.equipment_name equipmentName,
+            CONCAT(c.teach_building,
+                    '-',
+                    c.floor,
+                    '-',
+                    c.room_num) locationName
+        FROM
+            teach_class_card a,
+            teach_class_room c
+        WHERE
+            a.teach_class_room_id = c.id
+                AND a.school_id = #{schoolId,jdbcType=INTEGER}
+                AND a.teach_class_room_id IS NOT NULL
+                AND a.class_id = ''
+                AND a.del_flag = 0
+                AND c.del_flag = 0
+        ORDER BY a.update_date DESC
+    </select>
+
+
+</mapper>

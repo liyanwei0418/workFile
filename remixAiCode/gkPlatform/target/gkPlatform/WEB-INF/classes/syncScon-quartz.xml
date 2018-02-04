@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName">
+   
+   
+    <bean id="syncpush" class="cn.gukeer.sync.service.push.SyncMian" />
+    <!-- 每1分钟查询一次数据库信息 -->
+    <bean id="push" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject">
+                    <ref bean="syncpush" />
+                </property>
+                <property name="targetMethod">
+                    <value>execute</value>
+                </property>
+                <property name="concurrent">
+                    <value>true</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value><!-- 每天的每分钟 -->
+        </property>
+    </bean>
+
+    <bean id="findDeviceSynchroService" class="cn.gukeer.classcard.sync.DeviceSynchro"/>
+    <bean id="findDeviceSynchro" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject">
+                    <ref bean="findDeviceSynchroService" />
+                </property>
+                <property name="targetMethod">
+                    <value>execute</value>
+                </property>
+                <property name="concurrent">
+                    <value>true</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value><!-- 每隔1分钟-->
+        </property>
+    </bean>
+
+
+    <!--检查云盘账号创建的任务-->
+    <bean id="createNetDiskAccount" class="cn.gukeer.sync.netDiskAccount.CreateNetAccount"/>
+
+    <bean id="netDiskTask" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject">
+                    <ref bean="createNetDiskAccount" />
+                </property>
+                <property name="targetMethod">
+                    <value>createNetAccount</value>
+                </property>
+                <property name="concurrent">
+                    <value>true</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression">
+            <value>0 */1 * * * ?</value><!--每天一次-->
+        </property>
+    </bean>
+
+    <!--零点清除班牌考勤数据的缓存-->
+    <bean id="EhCacheJobService" class="cn.gukeer.sync.netty.classCardAttendance.EhCacheJob"/>
+    <bean id="EhCacheJob" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+                <property name="targetObject">
+                    <ref bean="EhCacheJobService" />
+                </property>
+                <property name="targetMethod">
+                    <value>execute</value>
+                </property>
+                <property name="concurrent">
+                    <value>true</value>
+                </property>
+            </bean>
+        </property>
+        <property name="cronExpression">
+            <value>0 0 0 * * ?</value>
+        </property>
+    </bean>
+
+    <!--<bean id="clientStart" class="OpenClient" />-->
+	 <!--定时器配置 lazy-init='false'-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"  lazy-init="false" autowire="no">
+		<property name="triggers"> 
+			<list> 
+                <ref bean="push"/>
+                <ref bean="findDeviceSynchro"/>
+                <ref bean="netDiskTask"/>
+                <ref bean="EhCacheJob"/>
+
+            </list>
+		</property> 
+	</bean>
+</beans>

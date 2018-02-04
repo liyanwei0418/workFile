@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.TeachCycleMapper" >
+  <resultMap id="BaseResultMap" type="cn.gukeer.platform.persistence.entity.TeachCycle" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="school_id" property="schoolId" jdbcType="VARCHAR" />
+    <result column="cycle_name" property="cycleName" jdbcType="VARCHAR" />
+    <result column="cycle_year" property="cycleYear" jdbcType="VARCHAR" />
+    <result column="cycle_semester" property="cycleSemester" jdbcType="INTEGER" />
+    <result column="term_begin_time" property="termBeginTime" jdbcType="BIGINT" />
+    <result column="begin_date" property="beginDate" jdbcType="BIGINT" />
+    <result column="end_date" property="endDate" jdbcType="BIGINT" />
+    <result column="week_count" property="weekCount" jdbcType="INTEGER" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="BIGINT" />
+    <result column="update_date" property="updateDate" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, school_id, cycle_name, cycle_year, cycle_semester, term_begin_time, begin_date, 
+    end_date, week_count, del_flag, create_date, update_date, create_by, update_by, remark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gukeer.platform.persistence.entity.TeachCycleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from teach_cycle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from teach_cycle
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from teach_cycle
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gukeer.platform.persistence.entity.TeachCycleExample" >
+    delete from teach_cycle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gukeer.platform.persistence.entity.TeachCycle" >
+    insert into teach_cycle (id, school_id, cycle_name, 
+      cycle_year, cycle_semester, term_begin_time, 
+      begin_date, end_date, week_count, 
+      del_flag, create_date, update_date, 
+      create_by, update_by, remark
+      )
+    values (#{id,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, #{cycleName,jdbcType=VARCHAR}, 
+      #{cycleYear,jdbcType=VARCHAR}, #{cycleSemester,jdbcType=INTEGER}, #{termBeginTime,jdbcType=BIGINT}, 
+      #{beginDate,jdbcType=BIGINT}, #{endDate,jdbcType=BIGINT}, #{weekCount,jdbcType=INTEGER}, 
+      #{delFlag,jdbcType=INTEGER}, #{createDate,jdbcType=BIGINT}, #{updateDate,jdbcType=BIGINT}, 
+      #{createBy,jdbcType=VARCHAR}, #{updateBy,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gukeer.platform.persistence.entity.TeachCycle" >
+    insert into teach_cycle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="schoolId != null" >
+        school_id,
+      </if>
+      <if test="cycleName != null" >
+        cycle_name,
+      </if>
+      <if test="cycleYear != null" >
+        cycle_year,
+      </if>
+      <if test="cycleSemester != null" >
+        cycle_semester,
+      </if>
+      <if test="termBeginTime != null" >
+        term_begin_time,
+      </if>
+      <if test="beginDate != null" >
+        begin_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="weekCount != null" >
+        week_count,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolId != null" >
+        #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleName != null" >
+        #{cycleName,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleYear != null" >
+        #{cycleYear,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleSemester != null" >
+        #{cycleSemester,jdbcType=INTEGER},
+      </if>
+      <if test="termBeginTime != null" >
+        #{termBeginTime,jdbcType=BIGINT},
+      </if>
+      <if test="beginDate != null" >
+        #{beginDate,jdbcType=BIGINT},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=BIGINT},
+      </if>
+      <if test="weekCount != null" >
+        #{weekCount,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update teach_cycle
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.schoolId != null" >
+        school_id = #{record.schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycleName != null" >
+        cycle_name = #{record.cycleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycleYear != null" >
+        cycle_year = #{record.cycleYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cycleSemester != null" >
+        cycle_semester = #{record.cycleSemester,jdbcType=INTEGER},
+      </if>
+      <if test="record.termBeginTime != null" >
+        term_begin_time = #{record.termBeginTime,jdbcType=BIGINT},
+      </if>
+      <if test="record.beginDate != null" >
+        begin_date = #{record.beginDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.weekCount != null" >
+        week_count = #{record.weekCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.delFlag != null" >
+        del_flag = #{record.delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update teach_cycle
+    set id = #{record.id,jdbcType=VARCHAR},
+      school_id = #{record.schoolId,jdbcType=VARCHAR},
+      cycle_name = #{record.cycleName,jdbcType=VARCHAR},
+      cycle_year = #{record.cycleYear,jdbcType=VARCHAR},
+      cycle_semester = #{record.cycleSemester,jdbcType=INTEGER},
+      term_begin_time = #{record.termBeginTime,jdbcType=BIGINT},
+      begin_date = #{record.beginDate,jdbcType=BIGINT},
+      end_date = #{record.endDate,jdbcType=BIGINT},
+      week_count = #{record.weekCount,jdbcType=INTEGER},
+      del_flag = #{record.delFlag,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=BIGINT},
+      update_date = #{record.updateDate,jdbcType=BIGINT},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      update_by = #{record.updateBy,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gukeer.platform.persistence.entity.TeachCycle" >
+    update teach_cycle
+    <set >
+      <if test="schoolId != null" >
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleName != null" >
+        cycle_name = #{cycleName,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleYear != null" >
+        cycle_year = #{cycleYear,jdbcType=VARCHAR},
+      </if>
+      <if test="cycleSemester != null" >
+        cycle_semester = #{cycleSemester,jdbcType=INTEGER},
+      </if>
+      <if test="termBeginTime != null" >
+        term_begin_time = #{termBeginTime,jdbcType=BIGINT},
+      </if>
+      <if test="beginDate != null" >
+        begin_date = #{beginDate,jdbcType=BIGINT},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=BIGINT},
+      </if>
+      <if test="weekCount != null" >
+        week_count = #{weekCount,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=BIGINT},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gukeer.platform.persistence.entity.TeachCycle" >
+    update teach_cycle
+    set school_id = #{schoolId,jdbcType=VARCHAR},
+      cycle_name = #{cycleName,jdbcType=VARCHAR},
+      cycle_year = #{cycleYear,jdbcType=VARCHAR},
+      cycle_semester = #{cycleSemester,jdbcType=INTEGER},
+      term_begin_time = #{termBeginTime,jdbcType=BIGINT},
+      begin_date = #{beginDate,jdbcType=BIGINT},
+      end_date = #{endDate,jdbcType=BIGINT},
+      week_count = #{weekCount,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=BIGINT},
+      update_date = #{updateDate,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

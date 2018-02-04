@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_ClassSectionExtensionMapper">
+
+    <select id="selectParentByPrim" resultType="java.util.Map">
+      SELECT * FROM v_partiarch_student_class_info WHERE parentId = #{prim}
+    </select>
+
+    <select id="parentInfoList" resultType="java.util.Map" parameterType="java.util.Map">
+        SELECT
+        *
+        FROM
+        v_partiarch_student_class_info
+        WHERE
+        1 = 1
+        <if test="parId == null">
+            <if test="stuName != null and stuName!=''">
+                AND
+                (
+                parentName LIKE #{stuName}
+                OR xsxm LIKE #{stuName}
+                )
+            </if>
+            <if test="schoolId != null and schoolId !=''">
+                AND schoolId = #{schoolId}
+            </if>
+            <if test="xd != null and xd !=''">
+                AND xd = #{xd}
+            </if>
+            <if test="xq != null and xq != ''">
+                AND xq = #{xq}
+            </if>
+            <if test="nj != null and nj !=''">
+                AND nj = #{nj}
+            </if>
+            <if test="classId != null and classId !=''">
+                AND classId = #{classId}
+            </if>
+        </if>
+        <if test="parId != null and parId.size() > 0">
+            AND parentId IN
+            <foreach item="par" index="index" collection="parId" open="(" separator="," close=")">
+                #{par}
+            </foreach>
+        </if>
+
+
+    </select>
+</mapper>

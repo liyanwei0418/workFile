@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+input{background-color: #fff !important;}
+h1,h2,h3,h4,h5,h6,p{margin:0;}
+ul,ol{list-style: none;padding:0;}
+span{display:inline-block;}
+.container{padding:0 ;}
+body{background: #fff !important;  font-family: "Microsoft YaHei", Arial, STXihei, '华文细黑',
+'Microsoft YaHei', SimSun, '宋体', Heiti, '黑体', sans-serif !important;
+}
+header {
+    background: #fff !important;
+    height:75px !important;
+    border:none !important;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 5px #fafafa;
+}
+.header-scroll{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:75px;
+    z-index:9999;
+    background: #fff;
+}
+
+
+.tree-menu{
+    padding:0 !important;
+}

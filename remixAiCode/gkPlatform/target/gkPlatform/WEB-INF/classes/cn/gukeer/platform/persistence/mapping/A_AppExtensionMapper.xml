@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gukeer.platform.persistence.dao.A_AppExtensionMapper" >
+
+    <resultMap id="ExtensionBaseResultMap" type="cn.gukeer.platform.persistence.entity.App"
+               extends="cn.gukeer.platform.persistence.dao.AppMapper.BaseResultMap" >
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name, icon_url, web_url, pic_url, app_permission, is_default, create_by,
+        create_date, update_by, update_date, remarks, del_flag, target_user, category, developers,
+        sfczxmz
+    </sql>
+
+    <select id="selectAppByUserIdAndUserType" resultMap="ExtensionBaseResultMap" parameterType="cn.gukeer.platform.persistence.entity.User" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_app a
+        LEFT JOIN ref_my_app ma ON a.id = ma.app_id
+        WHERE ma.user_id = #{id}
+        AND ma.user_type = #{userType}
+        AND a.del_flag = 0
+        ORDER BY a.category
+    </select>
+    <select id="selectAppByIsDefault" resultMap="ExtensionBaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from sys_app a
+        WHERE a.del_flag = 0
+        AND a.app_status = 1
+        ORDER BY a.id
+    </select>
+
+    <select id="findAppBySchool" resultMap="ExtensionBaseResultMap" parameterType="String" >
+        select
+        <include refid="Base_Column_List" />
+        from sys_app a
+        LEFT JOIN ref_school_app b ON a.id = b.app_id
+        WHERE b.school_id = #{schoolId}
+        AND a.del_flag = 0
+        ORDER BY a.id
+    </select>
+
+    <select id="findNotHaveList" resultMap="ExtensionBaseResultMap">
+        SELECT <include refid="Base_Column_List" />
+        FROM sys_app a
+        WHERE a.id NOT IN (SELECT b.app_id FROM ref_school_app b WHERE b.school_id = #{schoolId})
+        AND a.del_flag = 0
+        ORDER BY a.create_date
+    </select>
+    <delete id="deleteMyApp" parameterType="cn.gukeer.platform.persistence.entity.MyApp" >
+        delete from ref_my_APP
+        WHERE app_id = #{appId}
+        AND user_id = #{userId}
+        AND user_type = #{userType}
+    </delete>
+    
+     <select id="findByName" resultMap="ExtensionBaseResultMap" parameterType="String" >
+        select
+        *
+        from sys_app 
+        WHERE del_flag=0 and name like concat(concat('%',#{name}),'%')
+    </select>
+
+
+    <insert id="insertBatchMyApp">
+        INSERT INTO `ref_my_app`
+        (`user_id`,
+        `app_id`,
+        `user_type`)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.userId},#{item.appId},#{item.userType}
+            )
+        </foreach>
+    </insert>
+
+
+    <insert id="insertBatchCommonUsedApp">
+        INSERT INTO `ref_commonly_used_app`
+        (`app_id`,
+        `user_id`)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.appId},#{item.userId}
+            )
+        </foreach>
+    </insert>
+</mapper>

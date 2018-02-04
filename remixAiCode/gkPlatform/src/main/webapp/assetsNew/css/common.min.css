@@ -1,0 +1,266 @@
+* {
+    box-sizing: border-box
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+button,input, select{outline:none;}
+input[type=text],input[type=password]{border-radius:3px;border:1px solid #ddd;}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0
+}
+
+span {
+    display: inline-block
+}
+
+.container {
+    padding: 0
+}
+
+body {
+    background: #fff !important;
+    font-family: "Microsoft YaHei", Arial, STXihei, '华文细黑', 'Microsoft YaHei', SimSun, '宋体', Heiti, '黑体', sans-serif !important
+}
+
+header#header {
+    background: #fff !important;
+    height: 75px !important;
+    border: none !important;
+    margin-bottom: 20px;
+    padding: 0 50px;
+    box-shadow: 0 3px 5px #eee
+}
+
+#header>.container > .logo {
+    margin-top: 14px;
+    float: left
+}
+
+#header >.container > .nav-menu {
+    float: right;
+    height: 75px
+}
+
+#header >.container > .nav-menu > .home {
+    float: left;
+    width: 29px;
+    height: 24px;
+    cursor: pointer;
+    background: url(../images/icon.png) no-repeat -1px -73px;
+    margin-top: 27px
+}
+
+#header>.container  > .nav-menu > .home:hover{
+    background: url(../images/icon.png) no-repeat -97px -73px
+}
+
+#header >.container > .nav-menu > .news-center {
+    float: left;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-top: 27px;
+    background: url(../images/icon.png) no-repeat -67px -73px;
+    position: relative;
+    margin-left: 25px;
+    margin-right: 10px;
+    position: relative
+}
+
+.news-center-menu {
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 50px;
+    left: -120px;
+    border-radius: 4px;
+    width: 160px;
+    background: #fff;
+    box-shadow: 0 0 1px 1px #ddd
+}
+
+.news-center-menu:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    transform: rotate(45deg);
+    background: #fff;
+    border-radius: 3px;
+    right: 21px;
+    top: -6px
+}
+
+.news-center-menu li span {
+    font-size: 13px;
+    color: #525252;
+    width: 100%;
+    padding: 10px;
+    line-height: 30px;
+    position: relative
+}
+
+.news-center-menu li > span i {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    font-style: normal;
+    line-height: 18px;
+    text-align: center;
+    position: absolute;
+    top: 15px;
+    right: 7px;
+    background: #ff5269
+}
+
+#header >.container > .nav-menu > .news-center > i {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+    font-style: normal;
+    line-height: 18px;
+    text-align: center;
+    position: absolute;
+    top: -8px;
+    right: -9px;
+    background: #ff5269
+}
+
+#header >.container > .nav-menu > .news-center:hover {
+    background: url(../images/icon.png) no-repeat -163px -73px
+}
+
+#header >.container > .nav-menu > ul {
+    float: left;
+    min-width: 100px;
+    height: 75px;
+    margin-left: 25px;
+    cursor: pointer;
+    margin-bottom: 0
+}
+
+#header >.container > .nav-menu > ul > li {
+    text-align: center;
+    position: relative;
+    width:100%;
+    -webkit-transition: background .3s;
+    -moz-transition: background .3s;
+    -ms-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s
+}
+
+#header >.container > .nav-menu > ul > li>a{width:100%;padding:0 5px;}
+
+#header >.container > .nav-menu > ul > li>ul,#header >.container > .nav-menu > ul > li>ul li,#header >.container > .nav-menu > ul > li>ul li a{width:100%;}
+
+#header >.container > .nav-menu > ul > li:hover > a, #header > .nav-menu > ul > li > a.hover {
+    background: #54ab37
+}
+
+#header >.container > .nav-menu > ul > li:hover > a{border-bottom:1px solid #61b147;}
+
+#header >.container > .nav-menu > ul > li:hover i {
+    border-color: #fff
+}
+
+#header >.container > .nav-menu > ul > li:hover > a {
+    color: #fff
+}
+
+#header >.container > .nav-menu > ul > li > a {
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+    height: 75px;
+    color: #525252;
+    margin-right: 10px;
+    line-height: 75px
+}
+
+#header >.container > .nav-menu > ul > li > a i {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #9c9c9c;
+    border-bottom: 2px solid #9c9c9c;
+    transform: rotate(45deg);
+    position: relative;
+    bottom: 3px;
+    margin-left: 5px
+}
+
+#header .account-box {
+    display: none;
+    position: absolute;
+    width: 100px;
+    background: #54ab37;
+    z-index: 999999;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px
+}
+
+#header .account-box li a {
+    display: inline-block;
+    line-height: 42px;
+    width: 100px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center
+}
+
+.account-box > li > a.hover {
+    background: #53ab3d
+}
+
+#header .account-box li:first-child a i {
+    background-position: 0 0
+}
+
+#header .account-box li a i {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 4px;
+    right: 8px
+}
+
+#header .account-box li:first-child a i{
+    background:url(../images/account-set.png) no-repeat center center;
+}
+
+#header .account-box li:last-child a i{
+    background:url(../images/account-quit.png) no-repeat center center;
+}
+
+.header-scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    z-index: 9999;
+    background: #fff
+}
+
+.tree-menu {
+    padding: 0 !important
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false">
+    <!-- 指定一个文件目录，当EhCache把数据写到硬盘上时，将把数据写到这个文件目录下 -->
+    <!--<diskStore path="/home/lwkj/tomcat/10003_platform/cache"/>-->
+    <diskStore path="/home/alpha/tomcat/10003_platform/cache"/>
+    <!--<diskStore path="/opt/ehcahe/sys"/>-->
+
+    <!-- 设定缓存的默认数据过期策略 -->
+    <defaultCache maxElementsInMemory="10000"
+                  eternal="false"
+                  overflowToDisk="true"
+                  timeToIdleSeconds="3600"
+                  timeToLiveSeconds="3600"
+                  diskPersistent="false"
+                  diskExpiryThreadIntervalSeconds="3600"/>
+
+    <cache name="userCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"/>
+
+    <cache name="menuCache"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"/>
+
+    <cache name="action-cache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="7200"
+           timeToLiveSeconds="7200"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>
+
+    <cache name="schoolInfo"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <!--班牌考勤缓存-->
+    <cache name="classcard-cache"
+           maxEntriesLocalHeap="1000"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           timeToLiveSeconds="0"
+           overflowToDisk="true">
+    </cache>
+    <!--班牌命令缓存-->
+    <cache name="classcardcommand-cache"
+           maxEntriesLocalHeap="1000"
+           eternal="false"
+           timeToIdleSeconds="86400"
+           timeToLiveSeconds="0"
+           overflowToDisk="true">
+    </cache>
+
+  <!--  <cache name="token-cache"
+           maxEntriesLocalHeap="2000"
+           eternal="false"
+           timeToIdleSeconds="5"
+           timeToLiveSeconds="10"
+           overflowToDisk="false"
+           statistics="true">
+    </cache>-->
+
+</ehcache>
+
+        <!--配置自定义缓存        -->
+        <!--name：Cache的唯一标识        -->
+        <!--maxElementsInMemory：缓存中允许创建的最大对象数        -->
+        <!--maxElementsOnDisk：磁盘中最大缓存对象数，若是0表示无穷大        -->
+        <!--eternal：Element是否永久有效，一但设置了，timeout将不起作用，对象永不过期。       -->
+        <!--timeToIdleSeconds：缓存数据的钝化时间，也就是在一个元素消亡之前，闲置时间                    -->
+        <!--两次访问时间的最大时间间隔值，这只能在元素不是永久驻留时有效，                    -->
+        <!--如果该值是 0 就意味着元素可以停顿无穷长的时间。        -->
+        <!--timeToLiveSeconds：缓存数据的生存时间，也就是一个元素从构建到消亡的最大时间间隔值，                               这只能在元素不是永久驻留时有效，如果该值是0就意味着元素可以停顿无穷长的时间。        -->
+        <!--overflowToDisk：内存不足时，是否启用磁盘缓存。        -->
+        <!--diskPersistent：是否缓存虚拟机重启期数据	-->
+        <!--diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒	-->
+        <!--diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区        -->
+        <!--memoryStoreEvictionPolicy：缓存满了之后的淘汰算法。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）-->

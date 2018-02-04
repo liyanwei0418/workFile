@@ -1,0 +1,25 @@
+TRUNCATE TABLE sync_class_section;
+TRUNCATE TABLE sync_department;
+TRUNCATE TABLE sync_grade_class;
+TRUNCATE TABLE sync_org_school;
+TRUNCATE TABLE sync_patriarch;
+TRUNCATE TABLE sync_school_type;
+TRUNCATE TABLE sync_student;
+TRUNCATE TABLE sync_teach_class_room;
+TRUNCATE TABLE sync_teach_course;
+TRUNCATE TABLE sync_teach_course_type;
+TRUNCATE TABLE sync_teach_cycle;
+TRUNCATE TABLE sync_teach_ref_class_room;
+TRUNCATE TABLE sync_teach_ref_course_class;
+TRUNCATE TABLE sync_teach_ref_room_cycle;
+TRUNCATE TABLE sync_teach_room_type;
+TRUNCATE TABLE sync_teach_standard_course;
+TRUNCATE TABLE sync_teach_daily_hour;
+TRUNCATE TABLE sync_teacher;
+TRUNCATE TABLE sync_teacher_class;
+TRUNCATE TABLE sync_title;
+TRUNCATE TABLE sync_user;
+TRUNCATE TABLE sync_teach_course_node;
+TRUNCATE TABLE sync_teach_course_node_init;
+TRUNCATE TABLE sync_teach_table;
+
