@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+set timeout 30
+set ipaddr "114.215.29.139"
+set username "root"
+set password "GKlive2017"
+
+spawn ssh $username@$ipaddr
+#spawn ssh  root@106.15.186.185
+expect {
+"yes/no" { send "yes\r"; exp_continue}
+"password:" { send "$password\r" }
+}
+interact
+#expect "]# "          #用户的提示符，根据需要修改一下
+#send "ls\r"           #执行的命令，换成自己修改文件的
+#send "exit\r"
+#expect eof
+#exit
