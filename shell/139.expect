@@ -2,7 +2,7 @@
 set timeout 30
 set ipaddr "114.215.29.139"
 set username "root"
-set password "GKlive2017"
+set password "wulianedu@1123"
 
 spawn ssh $username@$ipaddr
 #spawn ssh  root@106.15.186.185
