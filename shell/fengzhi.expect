@@ -1,8 +1,8 @@
 #!/usr/bin/expect -f
 set timeout 30
-set ipaddr "121.42.139.15"
+set ipaddr "101.200.36.182"
 set username "root"
-set password "redis@ring@1123"
+set password "fz1314521="
 
 spawn ssh $username@$ipaddr
 #spawn ssh  root@106.15.186.185
@@ -16,3 +16,4 @@ interact
 #send "exit\r"
 #expect eof
 #exit
+
