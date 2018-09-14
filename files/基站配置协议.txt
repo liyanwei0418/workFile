@@ -1,0 +1,51 @@
+
+http://m.wulianedu.com/manage/config/basic/AC233FC0102E
+basic：
+{
+    "code": 0,
+    "msg": "ok",
+    "server": "127.0.0.1",      // UDP server Ip地址
+    "port": "22",				// UDP server port
+    "interval": "1",			// 扫描数据发送间隔： 存在且大于0为有效值， 单位为秒
+    "timeout": "60",			// 网关连接手环的超时时间 ，单位为秒
+    "ssid1": "tp-link-1",       //wifi id
+    "pin1": "NTU1",              //wifi 密码倒叙 转成字节数组，每个字节+1最后base64加密
+    "ssid2": "tp-link-1"
+    "pin2":,
+    "ssid3":
+    "pin3": "NTU1",
+     "config_id":1,  //自增
+     "use_wifi":1 , 
+     "use_dhcp":1 ,// 0禁用 或1可用
+      // dhcp 为 0 的情况下my_ip my_mask my_gateway生效
+     "my_ip":"192.168.1.100",
+     "my_mask":"255.255.255.0",
+     "my_gateway":"192.168.1.1"
+}
+
+
+
+日志回复：
+{
+    "code":0,
+    "msg":"ok",
+    "type":1,    // 为1 系统升级； 2执行脚本
+    "url":"http://a.com/a.txt",
+    "version":1       //type为1 系统版本号，type为2 脚本版本号
+    "config_id"   //basic 中的config_id
+}
+
+
+
+
+
+取消：
+{
+    "code": 0,
+    "msg": "ok",
+    "data": {
+        "restart": 1532935067994,		    //重启版本号， 此字段存在且网关版本低于此版本号，重启即可
+        "ipk":"http://p53jua7ov.bkt.clouddn.com/blegate_103.ipk",            //ipk文件下载地址
+        "ipk-v":103      //ipk文件版本号, 此字段存在且网关中ipk文件版本号低于此版本号，下载高版本ipk文件
+    }
+}

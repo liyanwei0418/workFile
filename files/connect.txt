@@ -1,0 +1,8 @@
+经开：
+	http://10.90.0.2:10003/platform/api/classcard/allnettystatus?schoolId=c74f7f8b253c8762df3d9288f58b1f95  
+	
+47测试：
+	http://47.104.194.46:8102/platform/api/classcard/allnettystatus?schoolId=6270d2b3c89d547b4876fc32695248dd
+	
+	
+经开teamviewer   账号 869321119 密码 1k14fp
