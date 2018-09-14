@@ -1,0 +1,22 @@
+spring boot 通过redis session 共享
+
+spring boot的转发服务
+
+ConvertToObject  通过反射 入库同步的数据
+
+动态数据源 threadlocal   RequestPathFilter.java
+
+数据库读写分离
+
+redis集群
+
+校区mybatis拦截器
+
+quartz 集群
+
+ALTER TABLE `ring_b5`.`sport_items` 
+ADD COLUMN `apply_sex` VARCHAR(45) NULL COMMENT '项目适用的性别' AFTER `item_type`,
+ADD COLUMN `apply_grade` VARCHAR(20000) NULL COMMENT '项目适用的年级' AFTER `apply_sex`;
+
+
+测试成绩没有等级分数 因为性别为空

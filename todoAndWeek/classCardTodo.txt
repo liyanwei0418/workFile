@@ -1,0 +1,115 @@
+-- 合集删除跟进
+
+设备管理增加其他--显示走班用
+
+设备管理~走班
+
+
+独立拆分班牌   	teachTaskimpl仍有 classcard残留
+
+
+多线程推送班牌数据
+
+-----------------------------------------
+
+班牌权限
+
+platform 的classcard分支 3月30号开始修改bug
+
+
+
+三张图片接口慢
+
+
+liuzitan@team  管理员
+quyifei@team  一班班主任
+
+
+servlet  spring  
+
+mvn war:war 和package
+
+考勤功能
+
+
+跑代码，看 datahub 和open
+
+数据库备份脚本
+    
+
+测试全量数据    
+
+roomname 没有  同步数据时就为空
+
+
+早自习同步时考勤异常
+
+开关机推送失败缓存
+
+考勤
+
+
+同步手环校区时  teach_ref_class_room 班级教室关系也要修改
+
+经开远程：
+		39.129.4.74:19833
+
+		账号 Administrator
+
+		密码 dell@2017
+
+
+api/classcard/getclass"   
+暂时先这样吧， 这个接口回头得改下，现在查的是行政班的学生信息。之后改成查全天每节课的学生
+
+
+班牌不能用docker部署   ffmpeg
+
+
+ALTER TABLE `classcard`.`org_school_type` 
+ADD COLUMN `parent_id` VARCHAR(50) NULL COMMENT '手环校区的学校id  。为0代表此条记录是学校，非零代表是校区，parentid 是该校区所属学校，为空则是云平台的校区；' AFTER `source`;
+
+ALTER TABLE `classcard`.`org_school_type` 
+ADD COLUMN `sync_id` VARCHAR(50) NULL COMMENT '手环中的id' AFTER `parent_id`;
+
+
+ALTER TABLE `classcard`.`org_grade_class` 
+ADD COLUMN `source` INT NULL COMMENT '来源  1是手环同步的校区班级关系；' AFTER `master_name`,
+ADD COLUMN `sync_id` VARCHAR(50) NULL COMMENT '手环库里班级的主键' AFTER `source`;
+
+
+
+管理中心 配置三个端口
+
+
+quartz spring @Service 不注入
+
+
+
+gk_platform;
+
+ALTER TABLE `gk_platform`.`org_school_type` 
+ADD COLUMN `source` INT(11) NULL DEFAULT NULL COMMENT '来源。1：手环的校区，用于考勤统计。 0或空是云平台的校区' AFTER `update_date`,
+ADD COLUMN `parent_id` VARCHAR(50) NULL DEFAULT NULL COMMENT '手环校区的学校id  。为0代表此条记录是学校，非零代表是校区，parentid 是该校区所属学校，为空则是云平台的校区；' AFTER `source`,
+ADD COLUMN `sync_id` VARCHAR(50) NULL DEFAULT NULL COMMENT '手环中的id' AFTER `parent_id`;
+
+
+ALTER TABLE `gk_platform`.`org_grade_class` 
+ADD COLUMN `source` INT(11) NULL DEFAULT NULL COMMENT '来源  1是手环同步的校区班级关系；' AFTER `master_name`,
+ADD COLUMN `sync_id` VARCHAR(50) NULL DEFAULT NULL COMMENT '手环库里班级的主键' AFTER `source`;
+------------------
+
+
+接口出一个点击页面
+
+
+
+
+Got error: 1356: View 'gk_platform.v_teach_class_room' references invalid table(s) or column(s) or function(s) or definer/invoker of view lack rights to use them when using LOCK TABLES
+
+
+
+
+
+
+

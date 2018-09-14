@@ -1,0 +1,130 @@
+
+response.setHeader等必须在代码最开始写入    https://yq.aliyun.com/ask/9597
+
+
+org_school   clientId 8   clientseurity    16
+
+
+--log-driver=none
+
+1. 管理中心添加查询接口，扫描1小时内扫描到手环的个数；
+2. 基站定期扫描，每天6点，10点，13点，15点，18点，查看扫描的数据。
+
+==================
+
+手环扣余额  返回最新余额
+
+根据设备ID  计算消费费用
+
+根据设备id 获取菜品名称金额
+
+===================
+
+定时检测设备存活 10分钟就报警/ 不能新增空的apk配置
+
+垃圾基站信息处理 /  maven git 安装
+
+
+ apk 卸载   报警短信不入库的bug      java    字符串  '\u202D' 8237       
+
+
+
+quartz注入 @service  quartz 和 spring 的先后加载顺序
+
+
+负载均衡 发多个tomcat  
+
+增加用户名密码 ssh 安装mysql
+
+
+没有procuce 和dev 文件夹的时候就无法覆盖properties 文件
+
+
+判断安装成功状态所有ip都行才行
+
+
+搜索用户
+
+
+ 替换部分文件  
+ 
+ docker 安装mysql 将数据库文件映射到宿主机
+ 
+ 
+ 部署成功状态排除tomcat的
+ 
+ rabbit 发送一次有一个链接
+ 
+ 
+ 项目管理一个地址可选择重复的服务（tomcat，docker_tomcat）
+ 
+ 
+ 返回安装状态时 报错  
+ ## Error updating database.  Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '9e7a96fc420d4357bace0c81a14af79d' for key 'PRIMARY'
+### The error may involve com.remixai.manage.deploy.persistence.dao.DeployProjectServiceRefMapper.updateByExampleSelective-Inline
+### The error occurred while setting parameters
+### SQL: update ref_project_service      SET id = ?,                       project_id = ?,                       service_id = ?,                       service_status = ?,                       ip = ?                     WHERE (  project_id = ?                                                                and service_id = ? )
+### Cause: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '9e7a96fc420d4357bace0c81a14af79d' for key 'PRIMARY'
+; SQL []; Duplicate entry '9e7a96fc420d4357bace0c81a14af79d' for key 'PRIMARY'; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '9e7a96fc420d4357bace0c81a14af79d' for key 'PRIMARY'] with root cause
+com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '9e7a96fc420d4357bace0c81a14af79d' for key 'PRIMARY'
+        at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+
+ 
+ 
+
+bug 
+        分之不显示;
+
+-------------------------------
+
+basic接口
+        use_dhcp   0  和1   ；
+        config_id 默认1 更新一次配置 就+1；
+        
+日志接口  
+        回调发送 command_id
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+ 批量config_id 加到最大的一个
+ 更新网络时加上字段对比， dhcp 禁用要mask ip gaetway要必填
+
+ 
+ runningtime  单位100ms
+ 
+
+GW-AC233FC01D33
+
+零点定时清war包
+
+解析配置时第一行没有注释就加不进来 eg blue的mongo配置
+
+
+批量配置， 回显选择机构的网络配置 
+批量配置， 回显wifi
+批量配置， 回显ipk
+
+
+管理中心 log
+基站log 中 type=2 另处理
+station_net_config 新增之前查找一下  之前有则更新
+
+
+接口出一个点击页面
+
+
+
+
+
+
+
+

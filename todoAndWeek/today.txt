@@ -1,0 +1,55 @@
+
+基站扫描手环查询入口
+----------------------
+
+
+/REDIS 模糊搜索 历史搜索/爬虫
+
+支付/ linux不会自动释放缓存
+
+取数据：  数据中心去基站
+推数据：  手环推云平台
+
+nio
+ 
+
+搜索引擎  /python/   jetty  nginx 替换请求路径 
+
+
+单点登录
+s
+
+抓包   shiro session共享   shiro 创建session   shiro 单点登录
+
+
+netty不同业务 走不同chanle
+
+二进制日志格式  公司139 博客
+
+
+24M  280s  50M 480s
+
+js 加载顺序
+
+
+web 数据同步（https://github.com/alibaba/otter    和https://github.com/alibaba/canal ）
+
+ redis jms 失败数据处理
+    
+    
+    org_class_section
+    org_school
+    org_grade_class
+    org_school_type
+    user_teacher
+    user_student
+    teach_cycle
+    teach_class_room
+    teach_course
+    teach_daily_hour
+    ref_teacher_class
+    sys_user
+    sys_role
+    ref_user_role
+    
+
